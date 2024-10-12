@@ -1,9 +1,12 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
-import { login as loginAction } from "@/slices/auth/authSlice";
+import {
+  login as loginAction,
+  signup as signupAction,
+} from "@/slices/auth/authSlice";
 import { getMeApi, loginApi, signupApi } from "@/api/authAPI";
 import { useToast } from "@/hooks/use-toast";
-import { WaitAndExecute } from "@/util/WaitAndExecute";
+import { waitAndExecute } from "@/util/waitAndExecute";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "@/routes/Routes.enum";
 
@@ -22,7 +25,7 @@ export const useLogin = () => {
         title: "Login successful",
         description: "You will be redirected to the home page in 2 seconds",
       });
-      WaitAndExecute(2000, () => navigate(ROUTES.HOME));
+      waitAndExecute(2000, () => navigate(ROUTES.HOME));
     },
     onError: (error) => {
       toast({
@@ -36,6 +39,8 @@ export const useLogin = () => {
 };
 
 export const useSignup = () => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
   const dispatch = useDispatch();
 
   return useMutation({
@@ -43,9 +48,19 @@ export const useSignup = () => {
     mutationFn: (credentials: { email: string; password: string }) =>
       signupApi(credentials.email, credentials.password),
     onSuccess: (data) => {
-      dispatch(loginAction({ token: data.token, userId: data.userId }));
+      dispatch(signupAction({ token: data.token, userId: data.userId }));
+      toast({
+        title: "Signup successful",
+        description: "You will be redirected to the profile page in 2 seconds",
+      });
+      waitAndExecute(2000, () => navigate(ROUTES.HOME));
     },
     onError: (error) => {
+      toast({
+        title: "Signup failed",
+        description: "Please try again",
+        variant: "destructive",
+      });
       throw error;
     },
   });
@@ -58,5 +73,6 @@ export const useGetMe = () => {
     queryFn: () => {
       return getMeApi();
     },
+    retry: false,
   });
 };

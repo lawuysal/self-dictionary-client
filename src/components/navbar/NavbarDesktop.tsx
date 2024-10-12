@@ -7,7 +7,7 @@ import { RootState } from "@/store";
 import { useSelector, useDispatch } from "react-redux";
 import { logout as logoutAction } from "@/slices/auth/authSlice";
 import { useToast } from "@/hooks/use-toast";
-import { WaitAndExecute } from "@/util/WaitAndExecute";
+import { waitAndExecute } from "@/util/waitAndExecute";
 
 export default function NavbarDesktop() {
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ export default function NavbarDesktop() {
                 description:
                   "You will be redirected to the home page in 2 seconds",
               });
-              WaitAndExecute(2000, () => navigate(ROUTES.HOME));
+              waitAndExecute(2000, () => navigate(ROUTES.HOME));
             }}
           >
             Logout
