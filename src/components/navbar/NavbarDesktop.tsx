@@ -1,9 +1,20 @@
 import { NAVBAR_ROUTES } from "./NavbarRoutes";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { DarkModeToggle } from "../mode-toggle";
+import ROUTES from "@/routes/Routes.enum";
+import { RootState } from "@/store";
+import { useSelector, useDispatch } from "react-redux";
+import { logout as logoutAction } from "@/slices/auth/authSlice";
+import { useToast } from "@/hooks/use-toast";
+import { WaitAndExecute } from "@/util/WaitAndExecute";
 
 export default function NavbarDesktop() {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  const dispatch = useDispatch();
+  const { token, userId } = useSelector((state: RootState) => state.auth);
+
   return (
     <>
       {/* Navbar Links */}
@@ -19,7 +30,26 @@ export default function NavbarDesktop() {
 
       {/* Trailling */}
       <div className="flex items-center justify-center gap-4 justify-self-end">
-        <Button className="hidden md:flex">Sign Up</Button>
+        {token && userId ? (
+          <Button
+            variant="destructive"
+            onClick={() => {
+              dispatch(logoutAction());
+              toast({
+                title: "Logout successful",
+                description:
+                  "You will be redirected to the home page in 2 seconds",
+              });
+              WaitAndExecute(2000, () => navigate(ROUTES.HOME));
+            }}
+          >
+            Logout
+          </Button>
+        ) : (
+          <NavLink to={ROUTES.LOGIN}>
+            <Button>Login</Button>
+          </NavLink>
+        )}
         <DarkModeToggle />
       </div>
     </>

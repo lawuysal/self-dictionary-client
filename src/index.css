@@ -1,6 +1,12 @@
 @tailwind base;
+
+* {
+  scrollbar-width: thin;
+}
+
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
     --background: 158.1 100% 95%;
@@ -63,5 +69,6 @@
   }
   body {
     @apply relative bg-background text-foreground;
+    @apply overflow-y-scroll;
   }
 }
