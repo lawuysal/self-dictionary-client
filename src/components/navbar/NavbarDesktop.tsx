@@ -3,11 +3,13 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { DarkModeToggle } from "../mode-toggle";
 import ROUTES from "@/routes/Routes.enum";
-import { RootState } from "@/store";
+import { RootState } from "@/redux/store";
 import { useSelector, useDispatch } from "react-redux";
-import { logout as logoutAction } from "@/slices/auth/authSlice";
+import { logout as logoutAction } from "@/redux/slices/auth/authSlice";
+import { cleanProfile } from "@/redux/slices/user/userProfileSlice";
 import { useToast } from "@/hooks/use-toast";
 import { waitAndExecute } from "@/util/waitAndExecute";
+import { cleanPreference } from "@/redux/slices/user/userPrefrenceSlice";
 
 export default function NavbarDesktop() {
   const navigate = useNavigate();
@@ -35,12 +37,13 @@ export default function NavbarDesktop() {
             variant="destructive"
             onClick={() => {
               dispatch(logoutAction());
+              dispatch(cleanProfile());
+              dispatch(cleanPreference());
               toast({
                 title: "Logout successful",
-                description:
-                  "You will be redirected to the home page in 2 seconds",
+                description: "You will be redirected to the home page ",
               });
-              waitAndExecute(2000, () => navigate(ROUTES.HOME));
+              waitAndExecute(1000, () => navigate(ROUTES.HOME));
             }}
           >
             Logout

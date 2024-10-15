@@ -2,10 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { useSignup } from "@/hooks/useAuth";
-import { LoginUserRequestSchema } from "@/pages/login/types/loginUserRequest.type";
-import { useState } from "react";
+import { useSignup } from "../hooks/useSignup";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { SignupUserRequestSchema } from "../types/signupUserRequest.type";
+import { useState } from "react";
 
 export default function EmailSignup() {
   const { toast } = useToast();
@@ -19,7 +19,7 @@ export default function EmailSignup() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const parsedBody = LoginUserRequestSchema.safeParse({ email, password });
+    const parsedBody = SignupUserRequestSchema.safeParse({ email, password });
 
     if (!parsedBody.success) {
       toast({

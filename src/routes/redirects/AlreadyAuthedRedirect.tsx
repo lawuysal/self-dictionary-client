@@ -1,12 +1,14 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useGetMe } from "@/hooks/useAuth";
-import ROUTES from "./Routes.enum";
+import { useGetMe } from "@/hooks/useGetMe";
+import ROUTES from "../Routes.enum";
 import Loader from "@/components/Loader";
 import { useDispatch } from "react-redux";
-import { logout as logoutAction } from "@/slices/auth/authSlice";
+import { logout as logoutAction } from "@/redux/slices/auth/authSlice";
 import { useEffect } from "react";
 
-export function LoginRedirect() {
+//This component will redirect the user to the home page if they are already logged in
+
+export function AlreadyAuthedRedirect() {
   const dispatch = useDispatch();
   const getMeQuery = useGetMe();
 

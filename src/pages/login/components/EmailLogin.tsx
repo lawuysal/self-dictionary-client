@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { LoginUserRequestSchema } from "../types/loginUserRequest.type";
-import { useLogin } from "@/hooks/useAuth";
+import { useLogin } from "@/pages/login/hooks/useLogin";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useToast } from "@/hooks/use-toast";
 
