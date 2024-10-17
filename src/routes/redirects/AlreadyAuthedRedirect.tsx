@@ -7,7 +7,6 @@ import { logout as logoutAction } from "@/redux/slices/auth/authSlice";
 import { useEffect } from "react";
 
 //This component will redirect the user to the home page if they are already logged in
-
 export function AlreadyAuthedRedirect() {
   const dispatch = useDispatch();
   const getMeQuery = useGetMe();

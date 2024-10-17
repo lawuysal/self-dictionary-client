@@ -9,3 +9,16 @@ export const CreateProfilePage = lazy(
 export const DashboardPage = lazy(
   () => import("@/pages/dashboard/DashboardPage"),
 );
+export const NotFoundPage = lazy(() => import("@/pages/notFound/NotFoundPage"));
+export const MyLanguagesPage = lazy(
+  () => import("@/pages/dashboard/pages/myLanguages/MyLanguagesPage"),
+);
+export const AllNotesPage = lazy(
+  () => import("@/pages/dashboard/pages/allNotes/AllNotesPage"),
+);
+export const ProfilePage = lazy(
+  () => import("@/pages/dashboard/pages/profile/ProfilePage"),
+);
+export const PreferencesPage = lazy(
+  () => import("@/pages/dashboard/pages/preferences/PreferencesPage"),
+);
