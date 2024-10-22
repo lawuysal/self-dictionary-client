@@ -16,6 +16,7 @@ export default function NavbarDesktop() {
   const { toast } = useToast();
   const dispatch = useDispatch();
   const { token, userId } = useSelector((state: RootState) => state.auth);
+  const { currentPath } = useSelector((state: RootState) => state.navigation);
 
   return (
     <>
@@ -23,7 +24,10 @@ export default function NavbarDesktop() {
       <div className="hidden md:flex">
         {NAVBAR_ROUTES.map((route) => (
           <NavLink to={route.path} key={route.label + route.path}>
-            <Button variant="link" className="font-semibold">
+            <Button
+              variant="link"
+              className={`font-semibold ${currentPath.split("/")[1] === route.path.split("/")[1] ? "underline" : ""}`}
+            >
               {route.label}
             </Button>
           </NavLink>

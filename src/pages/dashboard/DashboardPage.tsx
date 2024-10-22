@@ -9,7 +9,7 @@ export default function DashboardPage() {
       <DashboardSidebar />
 
       {/* May add ml-[50px] and min-w-[calc(100%-50px)] for different centering */}
-      <div className="flex min-h-[calc(100svh-56px)] w-full justify-center bg-muted/40 transition-all duration-200 ease-in-out md:ml-[40px] md:w-fit md:min-w-[calc(100%-50px)] md:rounded-tr-xl">
+      <div className="flex min-h-[calc(100svh-56px)] w-full justify-center bg-muted/40 transition-all duration-200 ease-in-out md:ml-[40px] md:w-fit md:min-w-[calc(100%-40px)] md:max-w-[calc(100%-40px)] md:rounded-tr-xl">
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
