@@ -22,3 +22,6 @@ export const ProfilePage = lazy(
 export const PreferencesPage = lazy(
   () => import("@/pages/dashboard/pages/preferences/PreferencesPage"),
 );
+export const LanguageByIdPage = lazy(
+  () => import("@/pages/dashboard/pages/languageById/LanguageByIdPage"),
+);

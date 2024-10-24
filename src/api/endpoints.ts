@@ -10,4 +10,8 @@ export const Endpoints = {
   // User endpoints
   PROFILES: `${BASE_URL}/profiles`,
   PREFERENCES: `${BASE_URL}/preferences`,
+
+  // Language endpoints
+  LANGUAGES: `${BASE_URL}/languages`,
+  LANGUAGES_BY_ID: (id: string) => `${BASE_URL}/languages/user/${id}`,
 };

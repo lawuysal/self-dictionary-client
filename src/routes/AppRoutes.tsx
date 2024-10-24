@@ -12,6 +12,7 @@ import {
   AllNotesPage,
   PreferencesPage,
   ProfilePage,
+  LanguageByIdPage,
 } from "@/routes/Routes.lazy";
 import Loader from "@/components/Loader";
 import { AlreadyAuthedRedirect } from "@/routes/redirects/AlreadyAuthedRedirect";
@@ -39,6 +40,10 @@ export function AppRoutes() {
           <Route element={<RequireProfileRedirect />}>
             <Route path={ROUTES.DASHBOARD} element={<DashboardPage />}>
               <Route path={ROUTES.MY_LANGUAGES} element={<MyLanguagesPage />} />
+              <Route
+                path={ROUTES.LANGUAGE_BY_ID}
+                element={<LanguageByIdPage />}
+              />
               <Route path={ROUTES.ALL_NOTES} element={<AllNotesPage />} />
               <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
               <Route path={ROUTES.PREFERENCES} element={<PreferencesPage />} />

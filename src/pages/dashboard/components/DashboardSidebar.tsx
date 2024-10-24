@@ -42,7 +42,7 @@ export default function DashboardSidebar() {
           <TooltipTrigger asChild>
             <NavLink
               to={ROUTES.MY_LANGUAGES}
-              className={`flex h-9 w-9 items-center ${currentPath === "/dashboard/my-languages" ? "border bg-muted text-foreground" : "text-muted-foreground"} justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8`}
+              className={`flex h-9 w-9 items-center ${currentPath.split("/")[2] === "my-languages" ? "border bg-muted text-foreground" : "text-muted-foreground"} justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8`}
             >
               <Languages size={22} />
             </NavLink>
