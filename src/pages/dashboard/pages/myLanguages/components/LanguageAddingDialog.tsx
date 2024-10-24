@@ -13,6 +13,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Plus } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { useCreateLanguge } from "../hooks/useCreateLanguge";
+import { RootState } from "@/redux/store";
+import { useSelector } from "react-redux";
+import { CreateLanguageRequest } from "../types/createLanguageRequest.dto";
+import { useEffect, useState } from "react";
 
 type Inputs = {
   name: string;
@@ -20,19 +25,35 @@ type Inputs = {
 };
 
 export default function LanguageAddingDialog() {
+  const [isOpen, setIsOpen] = useState(false);
   const {
     register,
     handleSubmit,
+    reset: resetForm,
     formState: { errors },
   } = useForm<Inputs>();
+  const createLanguageMutation = useCreateLanguge();
+  const { userId } = useSelector((state: RootState) => state.auth);
 
   const onSubmit = (data: Inputs) => {
-    console.log("Form Data:", data);
+    const createLanguageData: CreateLanguageRequest = {
+      ...data,
+      ownerId: userId!,
+    };
+
+    createLanguageMutation.mutate(createLanguageData);
   };
 
+  useEffect(() => {
+    if (createLanguageMutation.isSuccess) {
+      resetForm();
+      setIsOpen(false);
+    }
+  }, [createLanguageMutation.isSuccess, resetForm]);
+
   return (
-    <Dialog>
-      <DialogTrigger>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogTrigger asChild>
         <Button>
           <Plus className="mr-2 size-4" /> Add New
         </Button>
@@ -52,6 +73,7 @@ export default function LanguageAddingDialog() {
             <div className="mt-10 flex flex-col gap-2">
               <Label htmlFor="name">Name:</Label>
               <Input
+                autoComplete="off"
                 placeholder="e.g. English"
                 type="text"
                 id="name"
@@ -71,17 +93,18 @@ export default function LanguageAddingDialog() {
             <div className="flex flex-col gap-2">
               <Label htmlFor="description">Description:</Label>
               <Input
+                autoComplete="off"
                 type="text"
                 id="description"
                 {...register("description", {
                   required: true,
                   minLength: 5,
-                  maxLength: 100,
+                  maxLength: 200,
                 })}
               />
               {errors.description && (
                 <span className="text-xs text-destructive">
-                  "Description is required and must be between 5-100 chars."
+                  "Description is required and must be between 5-200 chars."
                 </span>
               )}
             </div>
@@ -91,6 +114,7 @@ export default function LanguageAddingDialog() {
             <DialogClose asChild>
               <Button variant="secondary">Cancel</Button>
             </DialogClose>
+
             <Button type="submit">Add</Button>
           </DialogFooter>
         </form>
