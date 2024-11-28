@@ -1,8 +1,8 @@
 import { Endpoints } from "@/api/endpoints";
-import { Language } from "../../../../../types/entities/language.entity";
+import { Language } from "@/types/entities/language.entity";
 
-export async function getLanguagesByUserIdApi(data: string) {
-  return await fetch(Endpoints.LANGUAGES_BY_USER_ID(data), {
+export async function getLanguageByIdApi(data: string) {
+  return await fetch(Endpoints.LANGUAGE_BY_ID(data), {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -11,11 +11,11 @@ export async function getLanguagesByUserIdApi(data: string) {
   })
     .then((res) => {
       if (!res.ok) {
-        throw new Error("Failed to fetch languages");
+        throw new Error("Failed to fetch language");
       }
       return res.json();
     })
-    .then((data) => data as Language[])
+    .then((data) => data as Language)
     .catch((error) => {
       throw error;
     });

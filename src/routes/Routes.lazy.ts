@@ -25,3 +25,6 @@ export const PreferencesPage = lazy(
 export const LanguageByIdPage = lazy(
   () => import("@/pages/dashboard/pages/languageById/LanguageByIdPage"),
 );
+export const NoteByIdPage = lazy(
+  () => import("@/pages/dashboard/pages/noteById/NoteByIdPage"),
+);

@@ -1,5 +1,5 @@
 import { Endpoints } from "@/api/endpoints";
-import { Language } from "../types/language.entity";
+import { Language } from "../../../../../types/entities/language.entity";
 import { CreateLanguageRequest } from "../types/createLanguageRequest.dto";
 
 export async function createLanguageApi(data: CreateLanguageRequest) {

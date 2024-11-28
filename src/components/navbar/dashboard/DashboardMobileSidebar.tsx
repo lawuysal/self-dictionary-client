@@ -55,7 +55,7 @@ export default function DashboardMobileSidebar() {
 
           <NavLink
             to={ROUTES.MY_LANGUAGES}
-            className={`rounded-md ${currentPath === ROUTES.MY_LANGUAGES ? "bg-muted" : ""} flex items-center px-2 py-1 hover:bg-muted/40`}
+            className={`rounded-md ${currentPath.split("/")[2] === "my-languages" ? "bg-muted" : ""} flex items-center px-2 py-1 hover:bg-muted/40`}
           >
             <SheetClose asChild>
               <div className="flex w-full items-center gap-3">
