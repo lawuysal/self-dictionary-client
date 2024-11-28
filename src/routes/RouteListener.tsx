@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { setPath } from "@/redux/slices/navigation/navigationSlice";
 
-const RouteListener = () => {
+function RouteListener() {
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -12,6 +12,6 @@ const RouteListener = () => {
   }, [location.pathname, dispatch]);
 
   return null;
-};
+}
 
 export default RouteListener;
