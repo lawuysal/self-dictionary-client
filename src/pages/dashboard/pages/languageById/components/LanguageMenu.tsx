@@ -5,7 +5,7 @@ import { Language } from "@/types/entities/language.entity";
 
 export default function LanguageMenu({ language }: { language: Language }) {
   return (
-    <div className="mt-2 flex flex-row items-center rounded-lg border p-3 dark:bg-primary/5 md:mt-12 md:w-[20%] md:flex-col md:p-0">
+    <div className="mt-2 flex h-fit flex-row items-center rounded-lg border p-3 dark:bg-primary/5 md:mt-12 md:h-[55svh] md:w-[90%] md:flex-col md:p-0">
       {/* Header */}
       <div className="hidden w-full items-center justify-center border-b py-2 dark:bg-primary/10 md:flex">
         <p>Language Menu</p>

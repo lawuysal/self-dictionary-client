@@ -4,20 +4,20 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  SelectGroup,
+  SelectSeparator,
+  SelectLabel,
 } from "@/components/ui/select";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 export default function NotePageSelector({
   totalPages,
-  page,
-  setPage,
 }: {
   totalPages: number;
-  page: string;
-  setPage: (page: string) => void;
 }) {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [page, setPage] = useState<string>(searchParams.get("page") || "1");
 
   useEffect(() => {
     const newParams = new URLSearchParams(searchParams);
@@ -26,19 +26,23 @@ export default function NotePageSelector({
   }, [page, searchParams, setSearchParams]);
 
   return (
-    <Select defaultValue={page} onValueChange={setPage}>
-      <SelectTrigger className="w-[30%]">
+    <Select onValueChange={setPage} value={page}>
+      <SelectTrigger className="w-full">
         <SelectValue placeholder="Select Page" />
       </SelectTrigger>
       <SelectContent>
-        {[...Array(totalPages)].map((_, index) => (
-          <SelectItem
-            key={index + "notesPageSelectorItem"}
-            value={`${index + 1}`}
-          >
-            Page: {index + 1}
-          </SelectItem>
-        ))}
+        <SelectGroup>
+          <SelectLabel>Pages</SelectLabel>
+          <SelectSeparator />
+          {[...Array(totalPages)].map((_, index) => (
+            <SelectItem
+              key={index + "notesPageSelectorItem"}
+              value={`${index + 1}`}
+            >
+              Page: {index + 1}
+            </SelectItem>
+          ))}
+        </SelectGroup>
       </SelectContent>
     </Select>
   );

@@ -1,6 +1,6 @@
 // const BASE_URL = "http://192.168.219.223:3005/api";
-// const BASE_URL = "http://192.168.1.30:3005/api";
-const BASE_URL = "http://localhost:3005/api";
+const BASE_URL = "http://192.168.1.30:3005/api";
+// const BASE_URL = "http://localhost:3005/api";
 
 export const Endpoints = {
   // Auth endpoints
@@ -22,7 +22,13 @@ export const Endpoints = {
   NOTE_BY_ID: (id: string) => `${BASE_URL}/notes/${id}`,
   NOTES_BY_LANGUAGE_ID: (
     id: string,
-    { limit = 10, page = 1 }: { limit: number; page: number },
-  ) => `${BASE_URL}/notes/language/${id}?limit=${limit}&page=${page}`,
+    {
+      limit = 10,
+      page = 1,
+      sortBy = "name",
+      order = "asc",
+    }: { limit: number; page: number; sortBy: string; order: string },
+  ) =>
+    `${BASE_URL}/notes/language/${id}?limit=${limit}&page=${page}&sortBy=${sortBy}&order=${order}`,
   NOTES_BY_USER_ID: (id: string) => `${BASE_URL}/notes/user/${id}`,
 };
