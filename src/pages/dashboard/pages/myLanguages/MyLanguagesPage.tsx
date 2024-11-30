@@ -31,7 +31,7 @@ export default function MyLanguagesPage() {
   }
 
   return (
-    <main className="mt-5 flex w-full justify-center md:mt-16">
+    <main className="mt-5 flex w-full justify-center">
       <Card className="h-fit w-[90%]">
         <CardHeader className="flex flex-row items-center justify-between rounded-t-lg border-b bg-background dark:bg-primary/10">
           <div className="flex flex-col gap-2">

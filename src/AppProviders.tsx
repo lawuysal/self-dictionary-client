@@ -20,10 +20,10 @@ const AppProviders = ({ children }: { children: ReactNode }) => {
             <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
               <TooltipProvider delayDuration={100}>
                 {children}
-                <ReactQueryDevtools
+                {/* <ReactQueryDevtools
                   initialIsOpen={false}
                   buttonPosition="bottom-left"
-                />
+                /> */}
                 <Toaster />
               </TooltipProvider>
             </ThemeProvider>

@@ -7,8 +7,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { ArrowLeft, Search } from "lucide-react";
+import {
+  NavLink,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import { useGetLanguageById } from "./hooks/useGetLanguageById";
 import Loader from "@/components/Loader";
 import { useGetNotesByLanguageId } from "./hooks/useGetNotesByLanguageId";
@@ -17,6 +22,8 @@ import { useEffect } from "react";
 import NotePageSelector from "./components/NotePageSelector";
 import NotesList from "./components/NotesList";
 import NoteItemSortSelector from "./components/NoteItemSortSelector";
+import { Button } from "@/components/ui/button";
+import ROUTES from "@/routes/Routes.enum";
 
 export default function LanguageByIdPage() {
   const navigate = useNavigate();
@@ -55,25 +62,38 @@ export default function LanguageByIdPage() {
 
   return (
     <main className="mt-5 flex w-full justify-center">
-      <Card className="h-[88svh] w-[90%] md:h-[85svh]">
+      <Card className="h-[88svh] w-[95%] md:h-[85svh]">
         <CardHeader className="grid grid-cols-1 place-items-center gap-2 rounded-t-lg border-b bg-background p-4 dark:bg-primary/10 md:p-6 lg:grid lg:grid-cols-3 lg:grid-rows-1">
-          <div className="flex w-full flex-row items-center justify-between gap-2 justify-self-start md:w-fit md:flex-col md:items-start">
-            <CardTitle className="text-xl md:text-2xl">
-              Language: {language.name}
-            </CardTitle>
-            <CardDescription>
-              <p>{notesData ? notesData.meta.total : 0} note(s) found.</p>
-            </CardDescription>
+          {/* title */}
+          <div className="flex w-full flex-row items-center justify-start gap-2 justify-self-start md:w-fit md:flex-row md:items-center">
+            <div className="">
+              <NavLink to={ROUTES.MY_LANGUAGES}>
+                <Button variant="ghost" className="">
+                  <ArrowLeft className="size-6" />
+                </Button>
+              </NavLink>
+            </div>
+
+            <div className="flex flex-col">
+              <CardTitle className="text-xl md:text-2xl">
+                Language: {language.name}
+              </CardTitle>
+              <CardDescription>
+                {notesData ? notesData.meta.total : 0} note(s) found.
+              </CardDescription>
+            </div>
           </div>
 
-          <div className="w-full md:w-full">
+          {/* searchbar */}
+          <div className="w-full">
             <div className="relative">
               <Input className="pl-10" />
               <Search className="top- absolute left-2 top-3" size={16} />
             </div>
           </div>
 
-          <div className="flex w-full items-center justify-center gap-2">
+          {/* trailing */}
+          <div className="flex w-full items-center justify-center gap-2 md:px-8">
             <NotePageSelector
               totalPages={notesData ? notesData.meta.totalPages : 0}
             />

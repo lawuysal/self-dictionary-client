@@ -8,6 +8,14 @@ import {
   SelectGroup,
   SelectSeparator,
 } from "@/components/ui/select";
+import {
+  ArrowDownAZ,
+  ArrowDownNarrowWide,
+  ArrowDownWideNarrow,
+  ArrowDownZA,
+  CalendarArrowDown,
+  CalendarArrowUp,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
@@ -34,12 +42,42 @@ export default function NoteItemSortSelector() {
         <SelectGroup>
           <SelectLabel>Sort by</SelectLabel>
           <SelectSeparator />
-          <SelectItem value="name asc">A to Z</SelectItem>
-          <SelectItem value="name desc">Z to A</SelectItem>
-          <SelectItem value="createdAt desc">Newest first</SelectItem>
-          <SelectItem value="createdAt asc">Oldest first</SelectItem>
-          <SelectItem value="intensity desc">High intensity</SelectItem>
-          <SelectItem value="intensity asc">Low intensity</SelectItem>
+          <SelectItem value="name asc">
+            <div className="flex flex-row items-center justify-center gap-2">
+              <ArrowDownAZ className="size-5" />
+              <p>A to Z</p>
+            </div>
+          </SelectItem>
+          <SelectItem value="name desc">
+            <div className="flex flex-row items-center justify-center gap-2">
+              <ArrowDownZA className="size-5" />
+              <p>Z to A</p>
+            </div>
+          </SelectItem>
+          <SelectItem value="createdAt desc">
+            <div className="flex flex-row items-center justify-center gap-2">
+              <CalendarArrowUp className="size-5" />
+              <p>Newest first</p>
+            </div>
+          </SelectItem>
+          <SelectItem value="createdAt asc">
+            <div className="flex flex-row items-center justify-center gap-2">
+              <CalendarArrowDown className="size-5" />
+              <p>Oldest first</p>
+            </div>
+          </SelectItem>
+          <SelectItem value="intensity desc">
+            <div className="flex flex-row items-center justify-center gap-2">
+              <ArrowDownWideNarrow className="size-5" />
+              <p>High intensity</p>
+            </div>
+          </SelectItem>
+          <SelectItem value="intensity asc">
+            <div className="flex flex-row items-center justify-center gap-2">
+              <ArrowDownNarrowWide className="size-5" />
+              <p>Low intensity</p>
+            </div>
+          </SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>
