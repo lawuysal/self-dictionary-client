@@ -24,6 +24,7 @@ import NotesList from "./components/NotesList";
 import NoteItemSortSelector from "./components/NoteItemSortSelector";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/routes/Routes.enum";
+import NotesSearchbar from "./components/NotesSearchbar";
 
 export default function LanguageByIdPage() {
   const navigate = useNavigate();
@@ -44,13 +45,14 @@ export default function LanguageByIdPage() {
     Number(searchParams.get("page") || 1),
     searchParams.get("sortBy") || "name",
     searchParams.get("order") || "asc",
+    searchParams.get("search") || "",
   );
 
-  useEffect(() => {
-    if (notesError?.status === 404) {
-      navigate("/404", { replace: true });
-    }
-  }, [navigate, notesError?.status]);
+  // useEffect(() => {
+  //   if (notesError?.status === 404) {
+  //     navigate("/404", { replace: true });
+  //   }
+  // }, [navigate, notesError?.status]);
 
   if (languageIsError || notesIsError) {
     return <div>{notesError?.status}</div>;
@@ -61,20 +63,20 @@ export default function LanguageByIdPage() {
   }
 
   return (
-    <main className="mt-5 flex w-full justify-center">
+    <main className="mt-2 flex w-full justify-center md:mt-5">
       <Card className="h-[88svh] w-[95%] md:h-[85svh]">
         <CardHeader className="grid grid-cols-1 place-items-center gap-2 rounded-t-lg border-b bg-background p-4 dark:bg-primary/10 md:p-6 lg:grid lg:grid-cols-3 lg:grid-rows-1">
           {/* title */}
           <div className="flex w-full flex-row items-center justify-start gap-2 justify-self-start md:w-fit md:flex-row md:items-center">
             <div className="">
               <NavLink to={ROUTES.MY_LANGUAGES}>
-                <Button variant="ghost" className="">
+                <Button size="icon" variant="ghost" className="">
                   <ArrowLeft className="size-6" />
                 </Button>
               </NavLink>
             </div>
 
-            <div className="flex flex-col">
+            <div className="flex flex-col items-center justify-center">
               <CardTitle className="text-xl md:text-2xl">
                 Language: {language.name}
               </CardTitle>
@@ -85,12 +87,13 @@ export default function LanguageByIdPage() {
           </div>
 
           {/* searchbar */}
-          <div className="w-full">
+          {/* <div className="w-full">
             <div className="relative">
               <Input className="pl-10" />
               <Search className="top- absolute left-2 top-3" size={16} />
             </div>
-          </div>
+          </div> */}
+          <NotesSearchbar />
 
           {/* trailing */}
           <div className="flex w-full items-center justify-center gap-2 md:px-8">

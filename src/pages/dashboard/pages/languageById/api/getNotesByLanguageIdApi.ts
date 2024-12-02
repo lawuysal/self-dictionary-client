@@ -6,11 +6,18 @@ export async function getNotesByLanguageIdApi(
   languageId: string,
   limit: number = 10,
   page: number = 1,
-  sortBy: string = "name",
+  sortBy: string = "createdAt",
   order: string = "asc",
+  search: string = "",
 ) {
   return await fetch(
-    Endpoints.NOTES_BY_LANGUAGE_ID(languageId, { limit, page, sortBy, order }),
+    Endpoints.NOTES_BY_LANGUAGE_ID(languageId, {
+      limit,
+      page,
+      sortBy,
+      order,
+      search,
+    }),
     {
       method: "GET",
       headers: {

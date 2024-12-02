@@ -7,14 +7,23 @@ export function useGetNotesByLanguageId(
   languageId: string,
   limit: number = 10,
   page: number = 1,
-  sortBy: string = "name",
+  sortBy: string = "createdAt",
   order: string = "asc",
+  search: string = "",
 ) {
   return useQuery<GetNotesByLanguageIdResponseDto, ApiError>({
     enabled: !!localStorage.getItem("token"),
-    queryKey: ["getNotesByLanguageId", languageId, limit, page, sortBy, order],
+    queryKey: [
+      "getNotesByLanguageId",
+      languageId,
+      limit,
+      page,
+      sortBy,
+      order,
+      search,
+    ],
     queryFn: () =>
-      getNotesByLanguageIdApi(languageId, limit, page, sortBy, order),
+      getNotesByLanguageIdApi(languageId, limit, page, sortBy, order, search),
     retry: 0,
   });
 }
