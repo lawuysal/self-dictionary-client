@@ -6,12 +6,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { useGetNoteById } from "./hooks/useGetNoteById";
 import Loader from "@/components/Loader";
 import NoteMenu from "./components/NoteMenu";
 import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import ROUTES from "@/routes/Routes.enum";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 
 const properties = [
   { name: "Property 1", value: "Value 1" },
@@ -40,15 +43,22 @@ export default function NoteByIdPage() {
   }
 
   return (
-    <main className="mt-5 flex w-full justify-center md:mt-16">
-      <Card className="h-fit w-[90%]">
-        <CardHeader className="flex rounded-t-lg border-b bg-background dark:bg-primary/10 lg:grid">
-          <div className="flex flex-col gap-2 justify-self-start">
-            <CardTitle>{note.name}</CardTitle>
+    <main className="mt-2 flex w-full justify-center overflow-hidden md:mt-5">
+      <Card className="h-[88svh] w-[95%] md:h-[88svh]">
+        <CardHeader className="flex w-full flex-row items-center gap-2 rounded-t-lg border-b bg-background p-4 dark:bg-primary/10 md:p-6">
+          <div className="flex items-center justify-center">
+            <NavLink to={ROUTES.LANGUAGE_BY_ID_GEN(note.languageId)}>
+              <Button size="icon" variant="ghost" className="">
+                <ArrowLeft className="size-6" />
+              </Button>
+            </NavLink>
+          </div>
+          <div className="flex flex-col justify-self-start">
+            <CardTitle className="text-xl md:text-2xl">{note.name}</CardTitle>
             <CardDescription>{note.translation}</CardDescription>
           </div>
         </CardHeader>
-        <CardContent className="flex flex-col md:flex-row">
+        <CardContent className="grid h-fit grid-cols-1 md:grid-cols-[1fr_4fr]">
           <NoteMenu note={note} />
 
           {/*Content*/}

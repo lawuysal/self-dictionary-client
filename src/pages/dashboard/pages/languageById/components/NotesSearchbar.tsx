@@ -19,6 +19,7 @@ export default function NotesSearchbar() {
     <div className="w-full">
       <div className="relative">
         <Input
+          placeholder="Start typing..."
           className="pl-10"
           value={search}
           onChange={(e) => setSearch(e.target.value)}

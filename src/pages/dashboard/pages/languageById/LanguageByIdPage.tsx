@@ -6,20 +6,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { ArrowLeft, Search } from "lucide-react";
-import {
-  NavLink,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
+import { NavLink, useParams, useSearchParams } from "react-router-dom";
 import { useGetLanguageById } from "./hooks/useGetLanguageById";
 import Loader from "@/components/Loader";
 import { useGetNotesByLanguageId } from "./hooks/useGetNotesByLanguageId";
 import LanguageMenu from "./components/LanguageMenu";
-import { useEffect } from "react";
-import NotePageSelector from "./components/NotePageSelector";
 import NotesList from "./components/NotesList";
 import NoteItemSortSelector from "./components/NoteItemSortSelector";
 import { Button } from "@/components/ui/button";
@@ -27,7 +19,6 @@ import ROUTES from "@/routes/Routes.enum";
 import NotesSearchbar from "./components/NotesSearchbar";
 
 export default function LanguageByIdPage() {
-  const navigate = useNavigate();
   const { id } = useParams();
   const [searchParams] = useSearchParams();
   const {
@@ -48,12 +39,6 @@ export default function LanguageByIdPage() {
     searchParams.get("search") || "",
   );
 
-  // useEffect(() => {
-  //   if (notesError?.status === 404) {
-  //     navigate("/404", { replace: true });
-  //   }
-  // }, [navigate, notesError?.status]);
-
   if (languageIsError || notesIsError) {
     return <div>{notesError?.status}</div>;
   }
@@ -63,8 +48,8 @@ export default function LanguageByIdPage() {
   }
 
   return (
-    <main className="mt-2 flex w-full justify-center md:mt-5">
-      <Card className="h-[88svh] w-[95%] md:h-[85svh]">
+    <main className="mt-2 flex w-full justify-center overflow-hidden md:mt-5">
+      <Card className="h-[88svh] w-[95%] md:h-[88svh]">
         <CardHeader className="grid grid-cols-1 place-items-center gap-2 rounded-t-lg border-b bg-background p-4 dark:bg-primary/10 md:p-6 lg:grid lg:grid-cols-3 lg:grid-rows-1">
           {/* title */}
           <div className="flex w-full flex-row items-center justify-start gap-2 justify-self-start md:w-fit md:flex-row md:items-center">
@@ -76,7 +61,7 @@ export default function LanguageByIdPage() {
               </NavLink>
             </div>
 
-            <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-col items-start justify-center">
               <CardTitle className="text-xl md:text-2xl">
                 Language: {language.name}
               </CardTitle>
@@ -86,28 +71,27 @@ export default function LanguageByIdPage() {
             </div>
           </div>
 
-          {/* searchbar */}
-          {/* <div className="w-full">
-            <div className="relative">
-              <Input className="pl-10" />
-              <Search className="top- absolute left-2 top-3" size={16} />
-            </div>
-          </div> */}
-          <NotesSearchbar />
+          {/* <NotesSearchbar /> */}
+          <div className="hidden md:flex"></div>
 
           {/* trailing */}
           <div className="flex w-full items-center justify-center gap-2 md:px-8">
-            <NotePageSelector
-              totalPages={notesData ? notesData.meta.totalPages : 0}
-            />
+            <NotesSearchbar />
             <NoteItemSortSelector />
           </div>
         </CardHeader>
 
-        <CardContent className="grid grid-cols-1 md:grid-cols-[1fr_4fr]">
+        <CardContent className="grid h-fit grid-cols-1 md:grid-cols-[1fr_4fr]">
           <LanguageMenu language={language} />
 
-          {notesData ? <NotesList notes={notesData.notes} /> : <p></p>}
+          {notesData ? (
+            <NotesList
+              notes={notesData.notes}
+              totalPages={notesData.meta.totalPages}
+            />
+          ) : (
+            <p></p>
+          )}
         </CardContent>
 
         <CardFooter></CardFooter>
