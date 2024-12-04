@@ -7,8 +7,8 @@ export default function LanguageMenu({ language }: { language: Language }) {
   return (
     <div className="mt-2 flex h-fit flex-row items-center rounded-lg border p-3 dark:bg-primary/5 md:mt-12 md:h-[55svh] md:w-[90%] md:flex-col md:p-0">
       {/* Header */}
-      <div className="hidden w-full items-center justify-center border-b py-2 dark:bg-primary/10 md:flex">
-        <p>Language Menu</p>
+      <div className="hidden w-full items-center justify-center border-b p-2 dark:bg-primary/10 md:flex">
+        <p className="text-wrap">Language Menu</p>
       </div>
       {/* Content */}
       <div className="flex w-full flex-row items-center justify-center gap-2 md:mt-5 md:flex-col">

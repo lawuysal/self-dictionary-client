@@ -46,7 +46,7 @@ export default function NotesPagination({
   }
 
   return (
-    <Pagination className="mt-1">
+    <Pagination className="mt-4">
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious

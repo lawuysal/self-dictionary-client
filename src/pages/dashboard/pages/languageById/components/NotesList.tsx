@@ -12,7 +12,7 @@ export default function NotesList({
 }) {
   return (
     <div className="flex flex-col">
-      <ScrollArea className="h-[50svh] w-full rounded-lg md:h-[65svh]">
+      <ScrollArea className="h-[53svh] w-full rounded-lg md:h-[65svh]">
         <div className="mx-auto mt-5 grid w-full grid-cols-1 place-items-center items-center justify-center gap-4 md:mt-12 md:w-[90%] md:grid-cols-2">
           {notes.map((note, index) => (
             <NoteItem key={index} note={note} />
