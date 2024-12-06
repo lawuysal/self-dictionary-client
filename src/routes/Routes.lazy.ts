@@ -28,3 +28,11 @@ export const LanguageByIdPage = lazy(
 export const NoteByIdPage = lazy(
   () => import("@/pages/dashboard/pages/noteById/NoteByIdPage"),
 );
+
+export const PracticePage = lazy(
+  () => import("@/pages/dashboard/pages/practice/PracticePage"),
+);
+
+export const QuizPracticePage = lazy(
+  () => import("@/pages/dashboard/pages/practice/pages/quiz/QuizPracticePage"),
+);

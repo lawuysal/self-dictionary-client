@@ -14,6 +14,8 @@ import {
   ProfilePage,
   LanguageByIdPage,
   NoteByIdPage,
+  PracticePage,
+  QuizPracticePage,
 } from "@/routes/Routes.lazy";
 import Loader from "@/components/Loader";
 import { AlreadyAuthedRedirect } from "@/routes/redirects/AlreadyAuthedRedirect";
@@ -51,6 +53,11 @@ export function AppRoutes() {
               <Route path={ROUTES.ALL_NOTES} element={<AllNotesPage />} />
               <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
               <Route path={ROUTES.PREFERENCES} element={<PreferencesPage />} />
+              <Route path={ROUTES.PRACTICE} element={<PracticePage />} />
+              <Route
+                path={ROUTES.QUIZ_PRACTICE}
+                element={<QuizPracticePage />}
+              />
             </Route>
           </Route>
         </Route>

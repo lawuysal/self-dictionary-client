@@ -13,6 +13,8 @@ const ROUTES = {
   ALL_NOTES: "/dashboard/all-notes",
   PROFILE: "/dashboard/profile",
   PREFERENCES: "/dashboard/preferences",
+  PRACTICE: "/dashboard/practice",
+  QUIZ_PRACTICE: "/dashboard/practice/quiz",
 };
 
 export default ROUTES;

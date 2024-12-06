@@ -3,6 +3,7 @@ import authReducer from "@/redux/slices/auth/authSlice";
 import userProfileReducer from "@/redux/slices/user/userProfileSlice";
 import userPreferenceReducer from "@/redux/slices/user/userPrefrenceSlice";
 import navigationReducer from "@/redux/slices/navigation/navigationSlice";
+import quizPracticeReducer from "@/redux/slices/quizPractice/quizPracticeSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     userProfile: userProfileReducer,
     userPreference: userPreferenceReducer,
     navigation: navigationReducer,
+    quizPractice: quizPracticeReducer,
   },
   devTools: process.env.NODE_ENV !== "production",
 });
