@@ -1,5 +1,6 @@
-import { NotebookPen, Pencil, Plus, Trash } from "lucide-react";
+import { Pencil, Plus, Trash } from "lucide-react";
 import { Note } from "@/types/entities/note.entity";
+import NoteUpdatingDialog from "./NoteUpdatingDialog";
 
 export default function NoteMenu({ note }: { note: Note }) {
   return (
@@ -21,24 +22,7 @@ export default function NoteMenu({ note }: { note: Note }) {
         </div>
 
         {/* Edit Note */}
-        <div className="flex w-full items-center justify-center">
-          <button className="flex items-center justify-start gap-2 rounded border border-blue-500/40 bg-blue-500/10 p-2 text-sm hover:bg-blue-500/20 md:w-[85%]">
-            <div className="flex size-5 items-center justify-center rounded-sm md:border md:border-blue-500/40 md:bg-blue-400/30">
-              <Pencil className="size-5 md:size-3" />
-            </div>
-            <p className="hidden md:flex">Edit Note</p>
-          </button>
-        </div>
-
-        {/* XXX */}
-        {/* <div className="flex w-full items-center justify-center">
-          <button className="flex items-center justify-start gap-2 rounded border border-orange-500/40 bg-orange-500/10 p-2 text-sm hover:bg-orange-500/20 md:w-[85%]">
-            <div className="flex size-5 items-center justify-center rounded-sm md:border md:border-orange-500/40 md:bg-orange-400/30">
-              <NotebookPen className="size-5 md:size-3" />
-            </div>
-            <p className="hidden md:flex">Practice</p>
-          </button>
-        </div> */}
+        <NoteUpdatingDialog note={note} />
 
         {/* Delete Note */}
         <div className="flex w-full items-center justify-center">

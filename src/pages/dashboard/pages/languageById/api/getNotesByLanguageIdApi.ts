@@ -11,13 +11,14 @@ export async function getNotesByLanguageIdApi(
   search: string = "",
 ) {
   return await fetch(
-    Endpoints.NOTES_BY_LANGUAGE_ID(languageId, {
+    Endpoints.NOTES_BY_LANGUAGE_ID(
+      languageId,
       limit,
       page,
       sortBy,
       order,
       search,
-    }),
+    ),
     {
       method: "GET",
       headers: {

@@ -3,8 +3,16 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 export default function NoteProperties({
   properties,
 }: {
-  properties: { name: string; value: string }[];
+  properties: { name: string; value: string }[] | null;
 }) {
+  if (!properties) {
+    return (
+      <div className="flex w-full items-center justify-center gap-2 rounded-lg border p-4 dark:bg-primary/10">
+        <p className="text-primary">No properties to show</p>
+      </div>
+    );
+  }
+
   return (
     <div className="flex w-full flex-col gap-2">
       <label htmlFor="note-properties-field">

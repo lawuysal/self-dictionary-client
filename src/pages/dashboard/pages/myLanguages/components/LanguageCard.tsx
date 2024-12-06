@@ -12,9 +12,9 @@ export default function LanguageCard({ language }: { language: Language }) {
   return (
     <NavLink
       to={ROUTES.LANGUAGE_BY_ID_GEN(language.id)}
-      className="h-full w-full rounded-lg shadow-sm transition-all duration-200 ease-in-out hover:cursor-pointer hover:bg-muted/40 hover:shadow-md"
+      className="h-full w-full rounded-lg shadow-sm transition-all duration-300 ease-in-out hover:cursor-pointer"
     >
-      <Card className="h-full">
+      <Card className="h-full hover:bg-muted/40 hover:shadow-md">
         <CardHeader>
           <CardTitle className="text-xl">{language.name}</CardTitle>
           <CardDescription>{language.description}</CardDescription>

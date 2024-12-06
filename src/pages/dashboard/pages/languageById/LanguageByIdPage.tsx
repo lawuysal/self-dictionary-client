@@ -63,10 +63,10 @@ export default function LanguageByIdPage() {
 
             <div className="flex flex-col items-start justify-center">
               <CardTitle className="text-xl md:text-2xl">
-                Language: {language.name}
+                Language: {language.name} ({notesData?.meta.totalCount})
               </CardTitle>
               <CardDescription>
-                {notesData ? notesData.meta.total : 0} note(s) found.
+                {notesData ? notesData.meta.total : 0} note(s) shown.
               </CardDescription>
             </div>
           </div>

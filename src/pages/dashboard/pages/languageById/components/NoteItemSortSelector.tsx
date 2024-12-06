@@ -26,11 +26,15 @@ export default function NoteItemSortSelector() {
   );
 
   useEffect(() => {
-    const newParams = new URLSearchParams(searchParams);
+    const currentSortBy = searchParams.get("sortBy") || "name";
+    const currentOrder = searchParams.get("order") || "asc";
     const [sortByValue, orderValue] = sorting.split(" ");
-    newParams.set("sortBy", sortByValue);
-    newParams.set("order", orderValue);
-    setSearchParams(newParams);
+    if (sortByValue !== currentSortBy || orderValue !== currentOrder) {
+      const newParams = new URLSearchParams(searchParams);
+      newParams.set("sortBy", sortByValue);
+      newParams.set("order", orderValue);
+      setSearchParams(newParams, { replace: true });
+    }
   }, [sorting, searchParams, setSearchParams]);
 
   return (

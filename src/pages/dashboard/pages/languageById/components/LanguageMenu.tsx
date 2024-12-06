@@ -2,6 +2,8 @@ import { NotebookPen, Trash } from "lucide-react";
 import NoteAddingDialog from "./NoteAddingDialog";
 import LanguageEditingDialog from "./LanguageEditingDialog";
 import { Language } from "@/types/entities/language.entity";
+import { NavLink } from "react-router-dom";
+import ROUTES from "@/routes/Routes.enum";
 
 export default function LanguageMenu({ language }: { language: Language }) {
   return (
@@ -19,14 +21,17 @@ export default function LanguageMenu({ language }: { language: Language }) {
         <LanguageEditingDialog language={language} />
 
         {/* Practice Language */}
-        <div className="flex w-full items-center justify-center">
+        <NavLink
+          to={ROUTES.PRACTICE}
+          className="flex w-full items-center justify-center"
+        >
           <button className="flex items-center justify-start gap-2 rounded border border-orange-500/40 bg-orange-500/10 p-2 text-sm hover:bg-orange-500/20 md:w-[85%]">
             <div className="flex size-5 items-center justify-center rounded-sm md:border md:border-orange-500/40 md:bg-orange-400/30">
               <NotebookPen className="size-5 md:size-3" />
             </div>
             <p className="hidden md:flex">Practice</p>
           </button>
-        </div>
+        </NavLink>
 
         {/* Delete Language */}
         <div className="flex w-full items-center justify-center">

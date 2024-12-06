@@ -10,9 +10,12 @@ export default function NotesSearchbar() {
   const debouncedSearch = useDebounce(search, 500);
 
   useEffect(() => {
-    const newSearchParams = new URLSearchParams(searchParams);
-    newSearchParams.set("search", debouncedSearch);
-    setSearchParams(newSearchParams);
+    const currentSearch = searchParams.get("search") || "";
+    if (debouncedSearch !== currentSearch) {
+      const newSearchParams = new URLSearchParams(searchParams);
+      newSearchParams.set("search", debouncedSearch);
+      setSearchParams(newSearchParams, { replace: true });
+    }
   }, [debouncedSearch, searchParams, setSearchParams]);
 
   return (

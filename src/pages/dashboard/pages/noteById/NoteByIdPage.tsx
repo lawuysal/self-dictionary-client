@@ -56,7 +56,7 @@ export default function NoteByIdPage() {
 
           <div className="mt-5 flex w-full flex-col gap-6 md:mt-12 md:px-8">
             {/* Properties */}
-            <NoteProperties properties={properties} />
+            <NoteProperties properties={JSON.parse(note.properties)} />
           </div>
         </CardContent>
 

@@ -36,10 +36,13 @@ export default function NotesPagination({
   }
 
   useEffect(() => {
-    const newParams = new URLSearchParams(searchParams);
-    newParams.set("page", `${selectedPage}`);
-    setSearchParams(newParams);
-  }, [searchParams, selectedPage, setSearchParams]);
+    const currentPage = Number(searchParams.get("page") || 1);
+    if (selectedPage !== currentPage) {
+      const newParams = new URLSearchParams(searchParams);
+      newParams.set("page", `${selectedPage}`);
+      setSearchParams(newParams, { replace: true });
+    }
+  }, [selectedPage, searchParams, setSearchParams]);
 
   if (totalPages === 0) {
     return <div></div>;

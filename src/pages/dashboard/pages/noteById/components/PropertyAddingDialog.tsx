@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useCreateNote } from "../hooks/useCreateNote";
-import { CreateNoteRequestDto } from "../types/createNoteRequest.dto";
 import {
   Dialog,
   DialogClose,
@@ -19,7 +17,7 @@ import { Plus } from "lucide-react";
 
 type Inputs = {
   name: string;
-  translation: string;
+  value: string;
 };
 
 export default function NoteAddingDialog({
@@ -39,7 +37,7 @@ export default function NoteAddingDialog({
   function onSubmit(data: Inputs) {
     const createNoteData: CreateNoteRequestDto = {
       ...data,
-      noteId,
+      languageId,
     };
 
     createNoteMutation.mutate(createNoteData);
@@ -60,16 +58,16 @@ export default function NoteAddingDialog({
             <div className="flex size-5 items-center justify-center rounded-sm md:border md:bg-primary/30">
               <Plus className="size-5 md:size-3" />
             </div>
-            <p className="hidden md:flex">Add New Note</p>
+            <p className="hidden md:flex">Add New Property</p>
           </button>
         </div>
       </DialogTrigger>
 
       <DialogContent className="w-[90%] rounded-lg">
         <DialogHeader>
-          <DialogTitle>Add a new note to practice</DialogTitle>
+          <DialogTitle>Add a new property to remember</DialogTitle>
           <DialogDescription>
-            Add a new note to practice and improve your vocabulary.
+            Add a new property to remember for this language.
           </DialogDescription>
         </DialogHeader>
 
@@ -96,20 +94,20 @@ export default function NoteAddingDialog({
             </div>
 
             <div className="flex flex-col gap-2">
-              <Label htmlFor="translation">Translation:</Label>
+              <Label htmlFor="value">Value:</Label>
               <Input
                 autoComplete="off"
                 type="text"
-                id="translation"
-                {...register("translation", {
+                id="value"
+                {...register("value", {
                   required: true,
                   minLength: 1,
                   maxLength: 150,
                 })}
               />
-              {errors.translation && (
+              {errors.value && (
                 <span className="text-xs text-destructive">
-                  "Translation is required and must be between 1-150 chars."
+                  "Value is required and must be between 1-150 chars."
                 </span>
               )}
             </div>
