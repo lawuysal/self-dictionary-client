@@ -2,8 +2,12 @@
 // const BASE_URL = "http://192.168.111.223:3005/api";
 // const BASE_URL = "http://192.168.1.30:3005/api";
 const BASE_URL = "http://localhost:3005/api";
+const STATIC_URL = "http://localhost:3005";
 
 export const Endpoints = {
+  BASE_URL,
+  STATIC_URL,
+
   // Auth endpoints
   LOGIN: `${BASE_URL}/auth/login`,
   SIGNUP: `${BASE_URL}/auth/signup`,
