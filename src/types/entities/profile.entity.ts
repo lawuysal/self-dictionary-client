@@ -1,6 +1,7 @@
 export type Profile = {
   id: string;
-  updatedAt: Date | null;
+  createdAt: string;
+  updatedAt: string | null;
   ownerId: string;
   firstName: string | null;
   lastName: string | null;

@@ -36,3 +36,13 @@ export const PracticePage = lazy(
 export const QuizPracticePage = lazy(
   () => import("@/pages/dashboard/pages/practice/pages/quiz/QuizPracticePage"),
 );
+
+export const SocialPage = lazy(() => import("@/pages/social/SocialPage"));
+
+export const SocialProfilePage = lazy(
+  () => import("@/pages/social/pages/socialProfile/SocialProfilePage"),
+);
+
+export const SocialPostByIdPage = lazy(
+  () => import("@/pages/social/pages/latestSocialPosts/LatestSocialPostsPage"),
+);

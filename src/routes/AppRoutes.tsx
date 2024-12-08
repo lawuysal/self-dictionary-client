@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import ROUTES from "./Routes.enum";
 import {
   HomePage,
@@ -16,6 +16,8 @@ import {
   NoteByIdPage,
   PracticePage,
   QuizPracticePage,
+  SocialPage,
+  SocialProfilePage,
 } from "@/routes/Routes.lazy";
 import Loader from "@/components/Loader";
 import { AlreadyAuthedRedirect } from "@/routes/redirects/AlreadyAuthedRedirect";
@@ -24,6 +26,7 @@ import { RequireProfileRedirect } from "./redirects/RequireProfileRedirect";
 import { RequireLoginRedirect } from "./redirects/RequireLoginRedirect";
 import RouteListener from "./RouteListener";
 import JWTChecker from "./JWTChecker";
+import LatestSocialPostsPage from "@/pages/social/pages/latestSocialPosts/LatestSocialPostsPage";
 
 export function AppRoutes() {
   return (
@@ -43,6 +46,21 @@ export function AppRoutes() {
           </Route>
 
           <Route element={<RequireProfileRedirect />}>
+            <Route path={ROUTES.SOCIAL} element={<SocialPage />}>
+              <Route
+                index
+                element={<Navigate to={ROUTES.LATEST_SOCIAL_POSTS} replace />}
+              />
+              <Route
+                path={ROUTES.LATEST_SOCIAL_POSTS}
+                element={<LatestSocialPostsPage />}
+              />
+              <Route
+                path={ROUTES.SOCIAL_PROFILE_BY_USERNAME}
+                element={<SocialProfilePage />}
+              />
+            </Route>
+
             <Route path={ROUTES.DASHBOARD} element={<DashboardPage />}>
               <Route path={ROUTES.MY_LANGUAGES} element={<MyLanguagesPage />} />
               <Route

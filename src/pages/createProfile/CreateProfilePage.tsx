@@ -91,6 +91,7 @@ export default function CreateProfilePage() {
             <div className="space-y-2">
               <Label htmlFor="username">Username*</Label>
               <Input
+                autoComplete="off"
                 pattern="[a-z0-9]+"
                 minLength={2}
                 maxLength={30}
@@ -105,6 +106,7 @@ export default function CreateProfilePage() {
             <div className="space-y-2">
               <Label htmlFor="firstName">First Name*</Label>
               <Input
+                autoComplete="off"
                 pattern="^[\p{L}]+(?:[\s\-'][\p{L}]+)*$"
                 minLength={2}
                 maxLength={30}
@@ -119,6 +121,7 @@ export default function CreateProfilePage() {
             <div className="space-y-2">
               <Label htmlFor="lastName">Last Name</Label>
               <Input
+                autoComplete="off"
                 pattern="^[\p{L}]+(?:[\s\-'][\p{L}]+)*$"
                 minLength={2}
                 maxLength={30}
@@ -132,6 +135,7 @@ export default function CreateProfilePage() {
             <div className="space-y-2">
               <Label htmlFor="bio">Bio</Label>
               <Textarea
+                autoComplete="off"
                 maxLength={150}
                 id="bio"
                 name="bio"

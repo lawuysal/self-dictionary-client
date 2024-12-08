@@ -15,6 +15,8 @@ export const Endpoints = {
 
   // User endpoints
   PROFILES: `${BASE_URL}/profiles`,
+  GET_PROFILE_BY_USERNAME: (username: string) =>
+    `${BASE_URL}/profiles/username/${username}`,
   PREFERENCES: `${BASE_URL}/preferences`,
 
   // Language endpoints
@@ -47,4 +49,9 @@ export const Endpoints = {
     `${BASE_URL}/notes/quiz/language/${languageId}`,
   GET_QUIZ_QUESTION_ANSWER: (noteId: string) =>
     `${BASE_URL}/notes/quiz/question/answer/${noteId}`,
+
+  // Social endpoints
+  SOCIAL_POSTS: `${BASE_URL}/social-posts`,
+  SOCIAL_POST_ADD_POSITIVE_ACTION: `${BASE_URL}/social-posts/add-positive-action`,
+  SOCIAL_POST_REMOVE_POSITIVE_ACTION: `${BASE_URL}/social-posts/remove-positive-action`,
 };
