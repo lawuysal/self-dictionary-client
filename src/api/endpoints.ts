@@ -18,6 +18,7 @@ export const Endpoints = {
   GET_PROFILE_BY_USERNAME: (username: string) =>
     `${BASE_URL}/profiles/username/${username}`,
   PREFERENCES: `${BASE_URL}/preferences`,
+  IS_FOLLOWED: `${BASE_URL}/users/is-followed/`,
 
   // Language endpoints
   LANGUAGES: `${BASE_URL}/languages`,

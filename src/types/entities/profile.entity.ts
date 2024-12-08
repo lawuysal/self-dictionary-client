@@ -8,4 +8,10 @@ export type Profile = {
   bio: string | null;
   photoUrl: string | null;
   username: string | null;
+  owner: {
+    _count: {
+      following: number;
+      followedBy: number;
+    };
+  };
 };

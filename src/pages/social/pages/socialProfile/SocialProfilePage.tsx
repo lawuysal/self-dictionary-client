@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import ROUTES from "@/routes/Routes.enum";
 import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
+import { useGetIsFollowed } from "../../hooks/useGetIsFollowed";
 
 export default function SocialProfilePage() {
   const { username } = useParams<{ username: string }>();
@@ -14,8 +15,31 @@ export default function SocialProfilePage() {
   const { username: loggedInUsername } = useSelector(
     (state: RootState) => state.userProfile,
   );
+  const { data: isFollowedData } = useGetIsFollowed(userProfile?.ownerId || "");
 
-  if (!userProfile || isLoading) {
+  function handleActionButton() {
+    if (
+      username?.toLocaleLowerCase() === loggedInUsername?.toLocaleLowerCase()
+    ) {
+      return (
+        <NavLink to={ROUTES.PROFILE}>
+          <Button variant="outline">Edit Profile</Button>
+        </NavLink>
+      );
+    }
+
+    if (isFollowedData) {
+      if (isFollowedData.isFollowed == true) {
+        return <Button variant="outline">Unfollow</Button>;
+      } else {
+        return <Button>Follow</Button>;
+      }
+    }
+
+    return;
+  }
+
+  if (!userProfile || !isFollowedData || isLoading) {
     return;
   }
 
@@ -30,13 +54,7 @@ export default function SocialProfilePage() {
             />
             <AvatarFallback>{`${userProfile.firstName}`}</AvatarFallback>
           </Avatar>
-          {loggedInUsername === userProfile.username ? (
-            <NavLink to={ROUTES.PROFILE}>
-              <Button variant="outline">Edit Profile</Button>
-            </NavLink>
-          ) : (
-            <Button>Follow</Button>
-          )}
+          {handleActionButton()}
         </div>
         <div>
           <h2 className="text-xl font-bold">
@@ -54,12 +72,14 @@ export default function SocialProfilePage() {
         <div className="flex gap-2 text-sm text-muted-foreground">
           <p className="cursor-pointer hover:underline">
             <span className="font text-base font-semibold text-foreground">
-              20
+              {userProfile.owner._count.following}
             </span>{" "}
             following
           </p>
           <p className="cursor-pointer hover:underline">
-            <span className="text-base font-semibold text-foreground">30</span>{" "}
+            <span className="text-base font-semibold text-foreground">
+              {userProfile.owner._count.followedBy}
+            </span>{" "}
             followers
           </p>
         </div>
