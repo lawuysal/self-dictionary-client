@@ -10,6 +10,7 @@ import { useAddPositiveActionOnPost } from "../hooks/useAddPositiveActionOnPost"
 import { useRemovePositiveActionFromPost } from "../hooks/useRemovePositiveActionFromPost";
 import { NavLink } from "react-router-dom";
 import ROUTES from "@/routes/Routes.enum";
+import OtherPositiveActionUsersList from "./OtherPositiveActionUsersList";
 
 export default function SocialPostCard({
   post,
@@ -39,22 +40,44 @@ export default function SocialPostCard({
 
     if (post.positiveActionCount === 1) {
       return (
-        <p className="text-sm text-muted-foreground">
+        <p
+          className="text-sm text-muted-foreground"
+          key={post.id + "postPositiveActionCountElement1"}
+        >
           Supported by{" "}
           <span className="cursor-pointer font-semibold hover:text-foreground">
-            @{post.positiveActionsBy[0].userUsername}
+            <NavLink
+              to={ROUTES.SOCIAL_PROFILE_BY_USERNAME_GEN(
+                post.positiveActionsBy[0].userUsername,
+              )}
+            >
+              @{post.positiveActionsBy[0].userUsername}
+            </NavLink>
           </span>
         </p>
       );
     }
 
     return (
-      <p className="text-sm text-muted-foreground">
+      <p
+        className="text-sm text-muted-foreground"
+        key={post.id + "postPositiveActionCountElement2"}
+      >
         Supported by{" "}
         <span className="cursor-pointer font-semibold hover:text-foreground">
-          @{post.positiveActionsBy[0].userUsername}
+          {" "}
+          <NavLink
+            to={ROUTES.SOCIAL_PROFILE_BY_USERNAME_GEN(
+              post.positiveActionsBy[0].userUsername,
+            )}
+          >
+            @{post.positiveActionsBy[0].userUsername}
+          </NavLink>
         </span>{" "}
-        and {post.positiveActionCount - 1} other
+        and{" "}
+        <OtherPositiveActionUsersList
+          positiveActionUsers={post.positiveActionsBy}
+        />
       </p>
     );
   }
@@ -88,15 +111,19 @@ export default function SocialPostCard({
     <div className="flex w-full flex-col gap-4 rounded-lg border px-4 pb-1 pt-4">
       {/*Content */}
       <div className="flex flex-row items-start gap-2">
-        <Avatar className="mt-1 flex items-center justify-center">
-          <AvatarImage
-            src={`${Endpoints.STATIC_URL}/${post.owner.photoUrl}`}
-            alt={post.owner.firstName + post.owner.lastName + "profile photo"}
-          />
-          <AvatarFallback>
-            {post.owner.firstName[0] + post.owner.lastName[0]}
-          </AvatarFallback>
-        </Avatar>
+        <NavLink
+          to={ROUTES.SOCIAL_PROFILE_BY_USERNAME_GEN(post.owner.username)}
+        >
+          <Avatar className="mt-1 flex items-center justify-center">
+            <AvatarImage
+              src={Endpoints.GET_IMAGE(post.owner.photoUrl || "")}
+              alt={post.owner.firstName + post.owner.lastName + "profile photo"}
+            />
+            <AvatarFallback>
+              {post.owner.firstName[0] || "" + post.owner.lastName[0] || ""}
+            </AvatarFallback>
+          </Avatar>
+        </NavLink>
 
         <div className="flex flex-col gap-1">
           <div className="flex items-center space-x-4">

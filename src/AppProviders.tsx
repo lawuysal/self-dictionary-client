@@ -6,7 +6,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { HelmetProvider } from "react-helmet-async";
 import { Provider as ReduxProvider } from "react-redux";
 import { store } from "./redux/store";
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster as ShadcnToaster } from "@/components/ui/toaster";
+import { Toaster as SonnerToaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "./components/ui/tooltip";
 
 const queryClient = new QueryClient();
@@ -24,7 +25,8 @@ const AppProviders = ({ children }: { children: ReactNode }) => {
                   initialIsOpen={false}
                   buttonPosition="bottom-left"
                 />
-                <Toaster />
+                <ShadcnToaster />
+                <SonnerToaster />
               </TooltipProvider>
             </ThemeProvider>
           </QueryClientProvider>

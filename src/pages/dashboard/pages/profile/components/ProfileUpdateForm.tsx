@@ -66,11 +66,11 @@ export default function ProfileUpdateForm() {
       <div className="space-y-2">
         <Label htmlFor="photo">Profile photo</Label>
         <div className="flex items-center space-x-4">
-          <a href={`${Endpoints.STATIC_URL}/${photoUrl}`} target="_blank">
+          <a href={Endpoints.GET_IMAGE(photoUrl || "")} target="_blank">
             <Avatar className="h-24 w-24">
               <AvatarImage
-                src={`${Endpoints.STATIC_URL}/${photoUrl}`}
-                alt="Profile photo of the user"
+                src={Endpoints.GET_IMAGE(photoUrl || "")}
+                alt={`${firstName} ${lastName} Profile photo`}
               />
               <AvatarFallback>{`${firstName ? firstName[0] : ""}${lastName ? lastName[0] : ""}`}</AvatarFallback>
             </Avatar>

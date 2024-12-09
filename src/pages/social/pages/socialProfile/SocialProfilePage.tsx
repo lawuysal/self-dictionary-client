@@ -1,13 +1,14 @@
-import { NavLink, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useGetSocialProfile } from "../../hooks/useGetSocialProfile";
 import { Endpoints } from "@/api/endpoints";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { CalendarDays } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import ROUTES from "@/routes/Routes.enum";
 import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
-import { useGetIsFollowed } from "../../hooks/useGetIsFollowed";
+import { ProfileActionButton } from "./components/ProfileActionButton";
+import UserFollowersList from "./components/UserFollowersList";
+import { getAvatarFallbackText } from "@/util/getAvatarFallbackText";
+import UserFollowedUsersList from "./components/UserFollowedUsersList";
 
 export default function SocialProfilePage() {
   const { username } = useParams<{ username: string }>();
@@ -15,31 +16,8 @@ export default function SocialProfilePage() {
   const { username: loggedInUsername } = useSelector(
     (state: RootState) => state.userProfile,
   );
-  const { data: isFollowedData } = useGetIsFollowed(userProfile?.ownerId || "");
 
-  function handleActionButton() {
-    if (
-      username?.toLocaleLowerCase() === loggedInUsername?.toLocaleLowerCase()
-    ) {
-      return (
-        <NavLink to={ROUTES.PROFILE}>
-          <Button variant="outline">Edit Profile</Button>
-        </NavLink>
-      );
-    }
-
-    if (isFollowedData) {
-      if (isFollowedData.isFollowed == true) {
-        return <Button variant="outline">Unfollow</Button>;
-      } else {
-        return <Button>Follow</Button>;
-      }
-    }
-
-    return;
-  }
-
-  if (!userProfile || !isFollowedData || isLoading) {
+  if (!userProfile || isLoading || !username || !loggedInUsername) {
     return;
   }
 
@@ -47,14 +25,28 @@ export default function SocialProfilePage() {
     <div className="flex w-full flex-col rounded-lg border p-5">
       <div className="flex flex-col gap-2">
         <div className="flex items-end justify-between">
-          <Avatar className="size-32 border">
-            <AvatarImage
-              src={`${Endpoints.STATIC_URL}/${userProfile.photoUrl}`}
-              alt={`${userProfile.firstName} ${userProfile.lastName} profile picture`}
-            />
-            <AvatarFallback>{`${userProfile.firstName}`}</AvatarFallback>
-          </Avatar>
-          {handleActionButton()}
+          <a
+            href={Endpoints.GET_IMAGE(userProfile.photoUrl || "")}
+            target="_blank"
+          >
+            <Avatar className="size-32 border">
+              <AvatarImage
+                src={Endpoints.GET_IMAGE(userProfile.photoUrl || "")}
+                alt={`${userProfile.firstName} ${userProfile.lastName} profile picture`}
+              />
+              <AvatarFallback>
+                {getAvatarFallbackText(
+                  userProfile.firstName,
+                  userProfile.lastName,
+                )}
+              </AvatarFallback>
+            </Avatar>
+          </a>
+          <ProfileActionButton
+            loggedInUsername={loggedInUsername}
+            profileUsername={username}
+            profileOwnerId={userProfile.ownerId}
+          />
         </div>
         <div>
           <h2 className="text-xl font-bold">
@@ -70,18 +62,14 @@ export default function SocialProfilePage() {
           Joined {new Date(userProfile.createdAt).toLocaleDateString()}
         </p>
         <div className="flex gap-2 text-sm text-muted-foreground">
-          <p className="cursor-pointer hover:underline">
-            <span className="font text-base font-semibold text-foreground">
-              {userProfile.owner._count.following}
-            </span>{" "}
-            following
-          </p>
-          <p className="cursor-pointer hover:underline">
-            <span className="text-base font-semibold text-foreground">
-              {userProfile.owner._count.followedBy}
-            </span>{" "}
-            followers
-          </p>
+          <UserFollowedUsersList
+            userId={userProfile.ownerId}
+            followedUsersCount={userProfile.owner._count.followedBy}
+          />
+          <UserFollowersList
+            userId={userProfile.ownerId}
+            followerCount={userProfile.owner._count.following}
+          />
         </div>
       </div>
     </div>

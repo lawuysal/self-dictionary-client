@@ -1,5 +1,5 @@
 import { Endpoints } from "@/api/endpoints";
-import { FollowCheckOnUserResponse } from "../types/followCheckOnUserResponse";
+import { FollowCheckOnUserResponse } from "@/pages/social/pages/socialProfile/types/followCheckOnUserResponse";
 
 export async function isFollowedApi(userId: string) {
   const currentUserId = localStorage.getItem("userId") as string;

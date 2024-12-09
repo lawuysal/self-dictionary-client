@@ -6,7 +6,7 @@ const STATIC_URL = "http://localhost:3005";
 
 export const Endpoints = {
   BASE_URL,
-  STATIC_URL,
+  GET_IMAGE: (path: string) => (path ? `${STATIC_URL}/${path}` : ""),
 
   // Auth endpoints
   LOGIN: `${BASE_URL}/auth/login`,
@@ -19,6 +19,12 @@ export const Endpoints = {
     `${BASE_URL}/profiles/username/${username}`,
   PREFERENCES: `${BASE_URL}/preferences`,
   IS_FOLLOWED: `${BASE_URL}/users/is-followed/`,
+  ADD_FOLLOW: `${BASE_URL}/users/add-follow/`,
+  REMOVE_FOLLOW: `${BASE_URL}/users/remove-follow/`,
+  GET_FOLLOWERS_BY_USER_ID: (id: string) =>
+    `${BASE_URL}/users/followers/user/${id}`,
+  GET_FOLLOWED_USERS_BY_USER_ID: (id: string) =>
+    `${BASE_URL}/users/followedUsers/user/${id}`,
 
   // Language endpoints
   LANGUAGES: `${BASE_URL}/languages`,

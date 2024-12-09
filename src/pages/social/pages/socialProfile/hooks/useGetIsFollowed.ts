@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { isFollowedApi } from "../api/isFollowedApi";
-import { FollowCheckOnUserResponse } from "../types/followCheckOnUserResponse";
+import { FollowCheckOnUserResponse } from "@/pages/social/pages/socialProfile/types/followCheckOnUserResponse";
 
 export function useGetIsFollowed(userId: string) {
   return useQuery<FollowCheckOnUserResponse, Error>({
