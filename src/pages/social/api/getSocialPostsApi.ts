@@ -1,8 +1,9 @@
 import { Endpoints } from "@/api/endpoints";
 import { GetSocialPostResponse } from "@/types/dtos/GetSocialPostResponse.dto";
+import { PostType } from "../enum/postType";
 
-export async function getSocialPostsApi() {
-  return await fetch(Endpoints.SOCIAL_POSTS, {
+export async function getSocialPostsApi(page: number, type: PostType) {
+  return await fetch(Endpoints.SOCIAL_POSTS_PAGINATION(page, type), {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

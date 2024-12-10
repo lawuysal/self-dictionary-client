@@ -43,6 +43,28 @@ export const SocialProfilePage = lazy(
   () => import("@/pages/social/pages/socialProfile/SocialProfilePage"),
 );
 
-export const SocialPostByIdPage = lazy(
+// export const SocialPostByIdPage = lazy(
+//   () => import("@/pages/social/pages/latestSocialPosts/LatestSocialPostsPage"),
+// );
+
+export const LatestSocialPostsPage = lazy(
   () => import("@/pages/social/pages/latestSocialPosts/LatestSocialPostsPage"),
+);
+
+export const PositiveActionedSocialPostsPage = lazy(
+  () =>
+    import(
+      "@/pages/social/pages/positiveActionedSocialPosts/PositiveActionedSocialPostsPage"
+    ),
+);
+
+export const MySocialPostsPage = lazy(
+  () => import("@/pages/social/pages/mySocialPosts/MySocialPostsPage"),
+);
+
+export const MyFollowingsSocialPostsPage = lazy(
+  () =>
+    import(
+      "@/pages/social/pages/myFollowingsSocialPosts/MyFollowingsSocialPostsPage"
+    ),
 );

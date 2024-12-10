@@ -34,24 +34,53 @@ export default function SocialMenu() {
           <h3 className="text-lg">Latest Posts</h3>
         </div>
       </NavLink>
-      <div className="flex items-center gap-4 rounded-lg p-2 transition-colors duration-100 ease-in hover:bg-muted">
-        <span>
-          <ArrowUp />
-        </span>
-        <h3 className="text-lg">Supported Posts</h3>
-      </div>
-      <div className="flex items-center gap-4 rounded-lg p-2 transition-colors duration-100 ease-in hover:bg-muted">
-        <span>
-          <Newspaper />
-        </span>
-        <h3 className="text-lg">My Posts</h3>
-      </div>
-      <div className="flex items-center gap-4 rounded-lg p-2 transition-colors duration-100 ease-in hover:bg-muted">
-        <span>
-          <UsersRound />
-        </span>
-        <h3 className="text-lg">My Followings</h3>
-      </div>
+      <NavLink to={ROUTES.POSITIVE_ACTIONED_SOCIAL_POSTS}>
+        <div
+          className={cn(
+            "flex items-center gap-4 rounded-lg p-2 transition-colors duration-100 ease-in hover:bg-muted",
+            ROUTES.POSITIVE_ACTIONED_SOCIAL_POSTS.split("/")[2] ===
+              currentPath.split("/")[2]
+              ? "bg-muted/70"
+              : "bg-transparent",
+          )}
+        >
+          <span>
+            <ArrowUp />
+          </span>
+          <h3 className="text-lg">Supported Posts</h3>
+        </div>
+      </NavLink>
+      <NavLink to={ROUTES.MY_SOCIAL_POSTS}>
+        <div
+          className={cn(
+            "flex items-center gap-4 rounded-lg p-2 transition-colors duration-100 ease-in hover:bg-muted",
+            ROUTES.MY_SOCIAL_POSTS.split("/")[2] === currentPath.split("/")[2]
+              ? "bg-muted/70"
+              : "bg-transparent",
+          )}
+        >
+          <span>
+            <Newspaper />
+          </span>
+          <h3 className="text-lg">My Posts</h3>
+        </div>
+      </NavLink>
+      <NavLink to={ROUTES.MY_FOLLOWINGS_SOCIAL_POSTS}>
+        <div
+          className={cn(
+            "flex items-center gap-4 rounded-lg p-2 transition-colors duration-100 ease-in hover:bg-muted",
+            ROUTES.MY_FOLLOWINGS_SOCIAL_POSTS.split("/")[2] ===
+              currentPath.split("/")[2]
+              ? "bg-muted/70"
+              : "bg-transparent",
+          )}
+        >
+          <span>
+            <UsersRound />
+          </span>
+          <h3 className="text-lg">My Followings</h3>
+        </div>
+      </NavLink>
       <NavLink to={ROUTES.SOCIAL_PROFILE_BY_USERNAME_GEN(username!)}>
         <div
           className={cn(

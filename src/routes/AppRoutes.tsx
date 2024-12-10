@@ -18,6 +18,9 @@ import {
   QuizPracticePage,
   SocialPage,
   SocialProfilePage,
+  PositiveActionedSocialPostsPage,
+  MySocialPostsPage,
+  MyFollowingsSocialPostsPage,
 } from "@/routes/Routes.lazy";
 import Loader from "@/components/Loader";
 import { AlreadyAuthedRedirect } from "@/routes/redirects/AlreadyAuthedRedirect";
@@ -54,6 +57,18 @@ export function AppRoutes() {
               <Route
                 path={ROUTES.LATEST_SOCIAL_POSTS}
                 element={<LatestSocialPostsPage />}
+              />
+              <Route
+                path={ROUTES.POSITIVE_ACTIONED_SOCIAL_POSTS}
+                element={<PositiveActionedSocialPostsPage />}
+              />
+              <Route
+                path={ROUTES.MY_SOCIAL_POSTS}
+                element={<MySocialPostsPage />}
+              />
+              <Route
+                path={ROUTES.MY_FOLLOWINGS_SOCIAL_POSTS}
+                element={<MyFollowingsSocialPostsPage />}
               />
               <Route
                 path={ROUTES.SOCIAL_PROFILE_BY_USERNAME}

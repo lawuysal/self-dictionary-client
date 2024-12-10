@@ -30,9 +30,11 @@ export default function CreateSocialPostForm() {
 
     if (createSocialPostMutation.isSuccess) {
       setContent("");
+      createSocialPostMutation.reset();
     }
   }, [
     content.length,
+    createSocialPostMutation,
     createSocialPostMutation.isPending,
     createSocialPostMutation.isSuccess,
   ]);

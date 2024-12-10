@@ -3,13 +3,13 @@ import { PostType } from "../../enum/postType";
 import { useGetSocialPosts } from "../../hooks/useGetSocialPosts";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-export default function LatestSocialPostsPage() {
+export default function MySocialPostsPage() {
   const {
     data: postsData,
     isLoading,
     fetchNextPage,
     hasNextPage,
-  } = useGetSocialPosts(PostType.LATEST_POSTS);
+  } = useGetSocialPosts(PostType.MY_POSTS);
 
   if (!postsData || isLoading) {
     return;
@@ -36,7 +36,7 @@ export default function LatestSocialPostsPage() {
       >
         {postsData.pages.map((page) =>
           page.map((post) => (
-            <SocialPostCard key={post.id + PostType.LATEST_POSTS} post={post} />
+            <SocialPostCard key={post.id + PostType.MY_POSTS} post={post} />
           )),
         )}
       </InfiniteScroll>
