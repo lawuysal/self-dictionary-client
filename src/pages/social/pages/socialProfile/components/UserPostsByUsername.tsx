@@ -1,22 +1,27 @@
-import SocialPostCard from "../../components/SocialPostCard";
-import { PostType } from "../../enum/postType";
-import { useGetSocialPosts } from "../../hooks/useGetSocialPosts";
+import SocialPostCard from "@/pages/social/components/SocialPostCard";
+import { PostType } from "@/pages/social/enum/postType";
+import { useGetSocialPosts } from "@/pages/social/hooks/useGetSocialPosts";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-export default function LatestSocialPostsPage() {
+export default function UserPostsByUsername({
+  username,
+}: {
+  username: string;
+}) {
   const {
     data: postsData,
     isLoading,
     fetchNextPage,
     hasNextPage,
-  } = useGetSocialPosts(PostType.LATEST_POSTS);
+  } = useGetSocialPosts(PostType.USERS_POSTS, username);
 
   if (!postsData || isLoading) {
     return;
   }
 
   return (
-    <div className="mt-5 flex w-full flex-col gap-4 md:mt-0">
+    <div className="flex w-full flex-col gap-4">
+      <p className="pl-5 text-lg font-semibold">Social Posts</p>
       <InfiniteScroll
         dataLength={postsData.pages.length}
         next={fetchNextPage}
@@ -36,7 +41,7 @@ export default function LatestSocialPostsPage() {
       >
         {postsData.pages.map((page) =>
           page.map((post) => (
-            <SocialPostCard key={post.id + PostType.LATEST_POSTS} post={post} />
+            <SocialPostCard key={post.id + PostType.MY_POSTS} post={post} />
           )),
         )}
       </InfiniteScroll>

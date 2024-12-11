@@ -60,14 +60,14 @@ export default function ProfileUpdateForm() {
 
   return (
     <form
-      className="mx-auto mt-5 w-1/2 space-y-6"
+      className="mx-auto mt-5 flex flex-col space-y-2 md:w-1/2"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="space-y-2">
         <Label htmlFor="photo">Profile photo</Label>
-        <div className="flex items-center space-x-4">
+        <div className="flex flex-col items-center gap-2 space-x-2 md:flex-row">
           <a href={Endpoints.GET_IMAGE(photoUrl || "")} target="_blank">
-            <Avatar className="h-24 w-24">
+            <Avatar className="h-24 w-24 border">
               <AvatarImage
                 src={Endpoints.GET_IMAGE(photoUrl || "")}
                 alt={`${firstName} ${lastName} Profile photo`}
@@ -111,7 +111,7 @@ export default function ProfileUpdateForm() {
         )}
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-rows-2 gap-4 md:grid-cols-2">
         <div className="space-y-1">
           <Label htmlFor="firstName">First name</Label>
           <Input

@@ -39,7 +39,7 @@ export default function NoteAddingDialog({
   function onSubmit(data: Inputs) {
     const createNoteData: CreateNoteRequestDto = {
       ...data,
-      noteId,
+      languageId,
     };
 
     createNoteMutation.mutate(createNoteData);

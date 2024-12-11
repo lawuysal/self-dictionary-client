@@ -4,12 +4,16 @@ import { Textarea } from "@/components/ui/textarea";
 import { Send } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useCreateSocialPost } from "../hooks/useCreateSocialPost";
+import { RootState } from "@/redux/store";
+import { useSelector } from "react-redux";
+import ROUTES from "@/routes/Routes.enum";
 
 export default function CreateSocialPostForm() {
   const [content, setContent] = useState("");
   const [disabled, setDisabled] = useState(false);
   const createSocialPostMutation = useCreateSocialPost();
   const userId = localStorage.getItem("userId");
+  const { currentPath } = useSelector((state: RootState) => state.navigation);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -40,7 +44,9 @@ export default function CreateSocialPostForm() {
   ]);
 
   return (
-    <Card className="w-full">
+    <Card
+      className={`w-full md:grid ${ROUTES.LATEST_SOCIAL_POSTS.split("/")[2] === currentPath.split("/")[2] ? "" : "hidden"}`}
+    >
       <CardHeader className="p-4">
         <h2 className="text-2xl font-bold">Create a Post</h2>
       </CardHeader>

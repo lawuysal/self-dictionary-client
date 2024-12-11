@@ -45,7 +45,7 @@ function UserFollowersList({
           <div className="flex flex-col gap-3">
             {followers &&
               followers.map((follower) => (
-                <DialogClose asChild>
+                <DialogClose asChild key={follower.id + "userFollowersList"}>
                   <NavLink
                     to={ROUTES.SOCIAL_PROFILE_BY_USERNAME_GEN(
                       follower.username,

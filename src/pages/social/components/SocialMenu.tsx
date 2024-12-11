@@ -5,7 +5,6 @@ import {
   ArrowUp,
   ClockArrowUp,
   Newspaper,
-  Settings,
   UserRound,
   UsersRound,
 } from "lucide-react";
@@ -96,12 +95,6 @@ export default function SocialMenu() {
           <h3 className="text-lg">Social Profile</h3>
         </div>
       </NavLink>
-      <div className="flex items-center gap-4 rounded-lg p-2 transition-colors duration-100 ease-in hover:bg-muted">
-        <span>
-          <Settings />
-        </span>
-        <h3 className="text-lg">Social Settings</h3>
-      </div>
     </div>
   );
 }

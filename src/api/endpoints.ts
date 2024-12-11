@@ -1,11 +1,11 @@
-// const BASE_URL = "http://192.168.219.223:3005/api";
+const STATIC_URL = "http://192.168.249.223:3005";
+// const STATIC_URL = "http://localhost:3005";
+const BASE_URL = `${STATIC_URL}/api`;
 // const BASE_URL = "http://192.168.111.223:3005/api";
+// const BASE_URL = "http://192.168.1.30:3005/api";
 
 import { PostType } from "@/pages/social/enum/postType";
-
-// const BASE_URL = "http://192.168.1.30:3005/api";
-const BASE_URL = "http://localhost:3005/api";
-const STATIC_URL = "http://localhost:3005";
+// const BASE_URL = "http://localhost:3005/api";
 
 export const Endpoints = {
   BASE_URL,
@@ -62,8 +62,13 @@ export const Endpoints = {
 
   // Social endpoints
   SOCIAL_POSTS: `${BASE_URL}/social-posts`,
-  SOCIAL_POSTS_PAGINATION: (page: number, type: PostType) =>
-    `${BASE_URL}/social-posts?page=${page}&type=${type}`,
+  SOCIAL_POST_BY_ID: (id: string) => `${BASE_URL}/social-posts/${id}`,
+  SOCIAL_POSTS_PAGINATION: (
+    page: number,
+    type: PostType,
+    username: string = "",
+  ) =>
+    `${BASE_URL}/social-posts?page=${page}&type=${type}&username=${username}`,
   SOCIAL_POST_ADD_POSITIVE_ACTION: `${BASE_URL}/social-posts/add-positive-action`,
   SOCIAL_POST_REMOVE_POSITIVE_ACTION: `${BASE_URL}/social-posts/remove-positive-action`,
 };

@@ -11,6 +11,7 @@ import { useRemovePositiveActionFromPost } from "../hooks/useRemovePositiveActio
 import { NavLink } from "react-router-dom";
 import ROUTES from "@/routes/Routes.enum";
 import OtherPositiveActionUsersList from "./OtherPositiveActionUsersList";
+import SocialPostCardMenu from "./SocialPostCardMenu";
 
 export default function SocialPostCard({
   post,
@@ -114,7 +115,7 @@ export default function SocialPostCard({
         <NavLink
           to={ROUTES.SOCIAL_PROFILE_BY_USERNAME_GEN(post.owner.username)}
         >
-          <Avatar className="mt-1 flex items-center justify-center">
+          <Avatar className="mt-1 flex items-center justify-center border">
             <AvatarImage
               src={Endpoints.GET_IMAGE(post.owner.photoUrl || "")}
               alt={post.owner.firstName + post.owner.lastName + "profile photo"}
@@ -152,6 +153,13 @@ export default function SocialPostCard({
                 </p>
               </div>
             </div>
+            {userId === post.owner.ownerId && (
+              <SocialPostCardMenu
+                postId={post.id}
+                postOwnerId={post.owner.ownerId}
+                userId={userId}
+              />
+            )}
           </div>
           <div>
             <p>{post.content}</p>

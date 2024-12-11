@@ -9,6 +9,7 @@ import { ProfileActionButton } from "./components/ProfileActionButton";
 import UserFollowersList from "./components/UserFollowersList";
 import { getAvatarFallbackText } from "@/util/getAvatarFallbackText";
 import UserFollowedUsersList from "./components/UserFollowedUsersList";
+import UserPostsByUsername from "./components/UserPostsByUsername";
 
 export default function SocialProfilePage() {
   const { username } = useParams<{ username: string }>();
@@ -22,8 +23,8 @@ export default function SocialProfilePage() {
   }
 
   return (
-    <div className="flex w-full flex-col rounded-lg border p-5">
-      <div className="flex flex-col gap-2">
+    <div className="flex w-full flex-col gap-8">
+      <div className="flex flex-col gap-2 rounded-lg border p-5">
         <div className="flex items-end justify-between">
           <a
             href={Endpoints.GET_IMAGE(userProfile.photoUrl || "")}
@@ -72,6 +73,8 @@ export default function SocialProfilePage() {
           />
         </div>
       </div>
+
+      <UserPostsByUsername username={username} />
     </div>
   );
 }
