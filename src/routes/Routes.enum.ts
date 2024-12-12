@@ -20,8 +20,11 @@ const ROUTES = {
   ALL_NOTES: "/dashboard/all-notes",
   PROFILE: "/dashboard/profile",
   PREFERENCES: "/dashboard/preferences",
-  PRACTICE: "/dashboard/practice",
-  QUIZ_PRACTICE: "/dashboard/practice/quiz",
+  PRACTICE: "/dashboard/practice/:languageId",
+  PRACTICE_GEN: (languageId: string) => `/dashboard/practice/${languageId}`,
+  QUIZ_PRACTICE: "/dashboard/practice/quiz/:languageId",
+  QUIZ_PRACTICE_GEN: (languageId: string) =>
+    `/dashboard/practice/quiz/${languageId}`,
 };
 
 export default ROUTES;

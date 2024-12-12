@@ -30,7 +30,7 @@ export default function SocialMenu() {
           <span>
             <ClockArrowUp />
           </span>
-          <h3 className="text-lg">Latest Posts</h3>
+          <h3 className="text-lg font-semibold">Latest Posts</h3>
         </div>
       </NavLink>
       <NavLink to={ROUTES.POSITIVE_ACTIONED_SOCIAL_POSTS}>
@@ -46,7 +46,7 @@ export default function SocialMenu() {
           <span>
             <ArrowUp />
           </span>
-          <h3 className="text-lg">Supported Posts</h3>
+          <h3 className="text-lg font-semibold">Supported Posts</h3>
         </div>
       </NavLink>
       <NavLink to={ROUTES.MY_SOCIAL_POSTS}>
@@ -61,7 +61,7 @@ export default function SocialMenu() {
           <span>
             <Newspaper />
           </span>
-          <h3 className="text-lg">My Posts</h3>
+          <h3 className="text-lg font-semibold">My Posts</h3>
         </div>
       </NavLink>
       <NavLink to={ROUTES.MY_FOLLOWINGS_SOCIAL_POSTS}>
@@ -77,7 +77,7 @@ export default function SocialMenu() {
           <span>
             <UsersRound />
           </span>
-          <h3 className="text-lg">My Followings</h3>
+          <h3 className="text-lg font-semibold">My Followings</h3>
         </div>
       </NavLink>
       <NavLink to={ROUTES.SOCIAL_PROFILE_BY_USERNAME_GEN(username!)}>
@@ -92,7 +92,7 @@ export default function SocialMenu() {
           <span>
             <UserRound />
           </span>
-          <h3 className="text-lg">Social Profile</h3>
+          <h3 className="text-lg font-semibold">Social Profile</h3>
         </div>
       </NavLink>
     </div>

@@ -10,5 +10,5 @@ export const formatTimeAgoForSocial = (date: Date) => {
   if (interval > 1) return Math.floor(interval) + "h";
   interval = seconds / 60;
   if (interval > 1) return Math.floor(interval) + "m";
-  return Math.floor(seconds) + " s";
+  return Math.floor(seconds) + "s";
 };

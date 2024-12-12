@@ -30,8 +30,8 @@ export default function SocialPostCardMenu({
       <PopoverTrigger>
         <Ellipsis className="size-4 text-muted-foreground hover:text-foreground" />
       </PopoverTrigger>
-      <PopoverContent>
-        <div className="flex flex-col gap-4">
+      <PopoverContent className="bg-background">
+        <div className="flex flex-col gap-4 text-center">
           <h3>Do you want to delete the post?</h3>
           <div className="flex flex-row-reverse items-center justify-center gap-4">
             <Button variant="destructive" onClick={handleDeletePost}>

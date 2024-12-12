@@ -22,7 +22,7 @@ export default function LanguageMenu({ language }: { language: Language }) {
 
         {/* Practice Language */}
         <NavLink
-          to={ROUTES.PRACTICE}
+          to={ROUTES.PRACTICE_GEN(language.id)}
           className="flex w-full items-center justify-center"
         >
           <button className="flex items-center justify-start gap-2 rounded border border-orange-500/40 bg-orange-500/10 p-2 text-sm hover:bg-orange-500/20 md:w-[85%]">

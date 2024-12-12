@@ -40,6 +40,7 @@ export function AppRoutes() {
       <Routes>
         <Route path={ROUTES.HOME} element={<HomePage />} />
 
+        {/* Create Profile Page */}
         <Route element={<RequireLoginRedirect />}>
           <Route element={<AlreadyHasProfileRedirect />}>
             <Route
@@ -48,6 +49,7 @@ export function AppRoutes() {
             />
           </Route>
 
+          {/* Social Page */}
           <Route element={<RequireProfileRedirect />}>
             <Route path={ROUTES.SOCIAL} element={<SocialPage />}>
               <Route
@@ -76,6 +78,7 @@ export function AppRoutes() {
               />
             </Route>
 
+            {/* Dashboard Page */}
             <Route path={ROUTES.DASHBOARD} element={<DashboardPage />}>
               <Route path={ROUTES.MY_LANGUAGES} element={<MyLanguagesPage />} />
               <Route
@@ -95,6 +98,7 @@ export function AppRoutes() {
           </Route>
         </Route>
 
+        {/* Authentication Pages */}
         <Route element={<AlreadyAuthedRedirect />}>
           <Route path={ROUTES.SIGNUP} element={<SignupPage />} />
           <Route path={ROUTES.LOGIN} element={<LoginPage />} />
