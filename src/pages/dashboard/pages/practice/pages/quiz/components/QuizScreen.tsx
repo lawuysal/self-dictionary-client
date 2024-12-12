@@ -36,6 +36,14 @@ export default function QuizScreen() {
 
   function handleNextQuestion() {
     if (currentQuestionIndex + 1 === quizQuestions.length) {
+      if (isCurrentQuestionUserAnswerIsCorrect) {
+        dispatch(increaseCorrectAnswers());
+      }
+
+      if (!isCurrentQuestionUserAnswerIsCorrect) {
+        dispatch(increaseWrongAnswers());
+      }
+
       dispatch(finishQuizPractice());
       return;
     }
@@ -83,7 +91,7 @@ export default function QuizScreen() {
 
   if (isQuizPracticeFinished) {
     return (
-      <div className="mt-8 flex flex-col justify-center gap-8 rounded-md border p-8">
+      <div className="mt-8 flex w-[99rem] max-w-[22rem] flex-col gap-8 rounded-md border p-8 md:max-w-[50%]">
         <h3 className="text-2xl font-semibold text-primary">
           Quiz practice finished
         </h3>
@@ -98,7 +106,7 @@ export default function QuizScreen() {
   }
 
   return (
-    <div className="mt-8 flex flex-col gap-8 rounded-md border p-8">
+    <div className="mt-8 flex w-[99rem] max-w-[22rem] flex-col gap-8 rounded-md border p-8 md:max-w-[50%]">
       <div className="flex items-center justify-between">
         <p className="">
           Question {currentQuestionIndex + 1} of {quizQuestions.length}
@@ -110,11 +118,11 @@ export default function QuizScreen() {
           </div>
         )}
       </div>
-      <p className="font text-2xl font-semibold">
-        What's the meaning of "{quizQuestions[currentQuestionIndex].noteName}"
+      <p className="font text-center text-2xl font-semibold">
+        What's the meaning of "{quizQuestions[currentQuestionIndex].noteName}"?
       </p>
 
-      <div className="flex items-center justify-center gap-8">
+      <div className="flex w-full flex-col flex-wrap items-center justify-center gap-2 md:flex-row md:gap-8">
         {quizQuestions[currentQuestionIndex].options.map((option) => (
           <Button
             disabled={isCurrentQuestionAnswered}
@@ -125,7 +133,7 @@ export default function QuizScreen() {
               "option" +
               Math.random()
             }
-            className={`${handleAnswerButtonColor(option)}`}
+            className={`${handleAnswerButtonColor(option)} w-full md:w-fit`}
             onClick={() =>
               handleAnswerSelection(
                 quizQuestions[currentQuestionIndex].noteId,
