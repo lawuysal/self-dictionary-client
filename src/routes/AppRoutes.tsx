@@ -27,15 +27,18 @@ import { AlreadyAuthedRedirect } from "@/routes/redirects/AlreadyAuthedRedirect"
 import { AlreadyHasProfileRedirect } from "./redirects/AlreadyHasProfileRedirect";
 import { RequireProfileRedirect } from "./redirects/RequireProfileRedirect";
 import { RequireLoginRedirect } from "./redirects/RequireLoginRedirect";
-import RouteListener from "./RouteListener";
-import JWTChecker from "./JWTChecker";
+import RouteListener from "./listeners/RouteListener";
+import JWTChecker from "./listeners/JWTChecker";
 import LatestSocialPostsPage from "@/pages/social/pages/latestSocialPosts/LatestSocialPostsPage";
+import PracticeResetter from "./listeners/PracticeResetter";
 
 export function AppRoutes() {
   return (
     <Suspense fallback={<Loader />}>
+      {/* Listeners */}
       <RouteListener />
       <JWTChecker />
+      <PracticeResetter />
 
       <Routes>
         <Route path={ROUTES.HOME} element={<HomePage />} />

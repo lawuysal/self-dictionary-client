@@ -20,7 +20,6 @@ export default function NoteItem({ note }: { note: Note }) {
           {note.intensity}/100
         </span>
       </div>
-      {/* <p className="text-sm opacity-50">{note.translation}</p> */}
 
       <IntensityBar intensity={note.intensity} />
     </NavLink>

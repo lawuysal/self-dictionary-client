@@ -15,11 +15,25 @@ import { NavLink, useParams } from "react-router-dom";
 import { useGetLanguageById } from "../../../languageById/hooks/useGetLanguageById";
 import { ArrowLeft } from "lucide-react";
 import ROUTES from "@/routes/Routes.enum";
+import { useGetLanguageNoteCountsById } from "@/pages/dashboard/hooks/useGetLanguageNoteCountsById";
+import { useState } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectTrigger,
+  SelectValue,
+  SelectItem,
+} from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
 
 export default function QuizPracticePage() {
   const { languageId } = useParams();
+  const { data: languageNoteCountsData } = useGetLanguageNoteCountsById(
+    languageId!,
+  );
   const { data: languageData, isLoading } = useGetLanguageById(languageId!);
   const quizPracticeStartMutation = useStartQuizPractice(languageId!);
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
   const { isQuizPracticeStarted } = useSelector(
     (state: RootState) => state.quizPractice,
@@ -29,9 +43,48 @@ export default function QuizPracticePage() {
     quizPracticeStartMutation.mutate();
   }
 
-  if (!languageData || isLoading) {
+  if (!languageData || !languageNoteCountsData || isLoading) {
     return;
   }
+
+  const intensityLevels = [
+    {
+      key: "all",
+      label: "All notes",
+      color: "bg-primary",
+      count: languageNoteCountsData.totalCount,
+    },
+    {
+      key: "low",
+      label: "Low intensity notes",
+      color: "bg-[#f04b43]",
+      count: languageNoteCountsData.lowIntensityCount,
+    },
+    {
+      key: "low-medium",
+      label: "Low-medium intensity notes",
+      color: "bg-[#df9140]",
+      count: languageNoteCountsData.lowMediumIntensityCount,
+    },
+    {
+      key: "medium",
+      label: "Medium intensity notes",
+      color: "bg-[#e8c468]",
+      count: languageNoteCountsData.mediumIntensityCount,
+    },
+    {
+      key: "medium-high",
+      label: "Medium-high intensity notes",
+      color: "bg-[#9bc172]",
+      count: languageNoteCountsData.mediumHighIntensityCount,
+    },
+    {
+      key: "high",
+      label: "High intensity notes",
+      color: "bg-[#10b97b]",
+      count: languageNoteCountsData.highIntensityCount,
+    },
+  ];
 
   return (
     <main className="mt-2 flex w-full justify-center md:mt-5">
@@ -49,7 +102,7 @@ export default function QuizPracticePage() {
 
             <div className="flex flex-col items-start justify-center">
               <CardTitle className="text-xl md:text-2xl">
-                Quiz Practice page: {languageData.name}
+                Quiz Practice Page: {languageData.name}
               </CardTitle>
               <CardDescription>
                 Practice through your notes with quizes.
@@ -63,10 +116,41 @@ export default function QuizPracticePage() {
           {/* trailing */}
           <div className="flex w-full items-center justify-center gap-2 md:px-8"></div>
         </CardHeader>
+
         <CardContent className="flex flex-col items-center justify-center gap-8">
+          <div
+            className={`mt-5 space-y-2 ${isQuizPracticeStarted ? "hidden" : ""}`}
+          >
+            <Label>Choose a note category to start quiz</Label>
+            <Select
+              disabled={isQuizPracticeStarted}
+              defaultValue="all"
+              value={selectedCategory}
+              onValueChange={(value) => setSelectedCategory(value)}
+            >
+              <SelectTrigger className="w-[300px]">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="flex flex-col justify-center gap-4">
+                {intensityLevels.map(({ key, label, color, count }) => (
+                  <SelectItem key={key} value={key} className="flex">
+                    <div className="flex items-center gap-3">
+                      {label}: {count}
+                      <div className={`${color} size-2 rounded-full`}></div>
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
           {!isQuizPracticeStarted && (
-            <Button onClick={handleStartQuizPractice} className="mt-8">
-              Start Quiz
+            <Button
+              disabled={languageNoteCountsData.totalCount < 10}
+              onClick={handleStartQuizPractice}
+              className="mt-8"
+            >
+              Start Quiz on All Notes
             </Button>
           )}
 

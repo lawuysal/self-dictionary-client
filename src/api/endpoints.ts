@@ -33,6 +33,8 @@ export const Endpoints = {
   LANGUAGES: `${BASE_URL}/languages`,
   LANGUAGE_BY_ID: (id: string) => `${BASE_URL}/languages/${id}`,
   LANGUAGES_BY_USER_ID: (id: string) => `${BASE_URL}/languages/user/${id}`,
+  LANGUAGE_NOTE_COUNT_BY_ID: (id: string) =>
+    `${BASE_URL}/languages/note-counts/${id}`,
 
   // Note endpoints
   NOTES: `${BASE_URL}/notes`,

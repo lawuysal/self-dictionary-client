@@ -1,14 +1,14 @@
 function getSolidColor(intensity: number) {
   if (intensity <= 20) {
-    return "#f04b43"; // Red
+    return "#f04b43";
   } else if (intensity <= 40) {
-    return "#df9140"; // Dark Orange
+    return "#df9140";
   } else if (intensity <= 60) {
-    return "#e8c468"; // Orange
+    return "#e8c468";
   } else if (intensity <= 80) {
-    return "#9bc172"; // Dark Green
+    return "#9bc172";
   } else {
-    return "#10b97b"; // Green
+    return "#10b97b";
   }
 }
 
