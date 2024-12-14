@@ -44,8 +44,21 @@ const userProfileSlice = createSlice({
       state.bio = null;
       state.photoUrl = null;
     },
+    updateProfile: (state, action: PayloadAction<UserProfileState>) => {
+      localStorage.setItem("sd-username", action.payload.username!);
+      localStorage.setItem("sd-firstName", action.payload.firstName!);
+      localStorage.setItem("sd-lastName", action.payload.lastName!);
+      localStorage.setItem("sd-bio", action.payload.bio!);
+      localStorage.setItem("sd-photoUrl", action.payload.photoUrl!);
+      state.username = action.payload.username;
+      state.firstName = action.payload.firstName;
+      state.lastName = action.payload.lastName;
+      state.bio = action.payload.bio;
+      state.photoUrl = action.payload.photoUrl;
+    },
   },
 });
 
-export const { getProfile, cleanProfile } = userProfileSlice.actions;
+export const { getProfile, cleanProfile, updateProfile } =
+  userProfileSlice.actions;
 export default userProfileSlice.reducer;

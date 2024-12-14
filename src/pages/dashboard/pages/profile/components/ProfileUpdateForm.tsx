@@ -5,9 +5,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { useUpdateProfile } from "../hooks/useUpdateProfile";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { Endpoints } from "@/api/endpoints";
+import { useEffect } from "react";
+import { updateProfile } from "@/redux/slices/user/userProfileSlice";
 
 type Inputs = {
   photo: FileList;
@@ -30,6 +32,7 @@ export default function ProfileUpdateForm() {
   const { firstName, bio, lastName, photoUrl, username } = useSelector(
     (state: RootState) => state.userProfile,
   );
+  const dispatch = useDispatch();
 
   function onSubmit(data: Inputs) {
     if (data.photo[0]) {
@@ -57,6 +60,14 @@ export default function ProfileUpdateForm() {
       reset();
     }
   }
+
+  useEffect(() => {
+    if (updateProfileMutation.isSuccess) {
+      reset();
+      dispatch(updateProfile(updateProfileMutation.data!));
+      updateProfileMutation.reset();
+    }
+  }, [dispatch, reset, updateProfileMutation]);
 
   return (
     <form
