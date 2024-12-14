@@ -11,23 +11,6 @@ import NoteMenu from "./components/NoteMenu";
 import NoteProperties from "./components/NoteProperties";
 import NoteDetailedCardTitle from "./components/NoteDetailedCardTitle";
 
-const properties = [
-  { name: "Infinitive", value: "go" },
-  { name: "Past Simple", value: "went" },
-  { name: "Past Participle", value: "gone" },
-  { name: "Present Participle", value: "going" },
-  { name: "Third Person Singular", value: "goes" },
-  { name: "Gerund", value: "going" },
-  { name: "Imperative", value: "go!" },
-  { name: "Conditional", value: "would go" },
-  { name: "Present Perfect", value: "have/has gone" },
-  { name: "Past Perfect", value: "had gone" },
-  { name: "Future Simple", value: "will go" },
-  { name: "Future Simple", value: "will go" },
-  { name: "Future Simple", value: "will go" },
-  { name: "Future Simple", value: "will go" },
-];
-
 export default function NoteByIdPage() {
   const { noteId } = useParams();
   const { data: note, isLoading, error } = useGetNoteById(noteId!);

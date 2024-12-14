@@ -4,5 +4,6 @@ export interface Language {
   editedAt: string;
   name: string;
   description: string;
+  shadowLanguage: string;
   ownerId: string;
 }

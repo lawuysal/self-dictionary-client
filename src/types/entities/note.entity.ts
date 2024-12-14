@@ -9,4 +9,7 @@ export interface Note {
   createdAt: Date;
   editedAt: Date;
   languageId: string;
+  language: {
+    shadowLanguage: string;
+  };
 }

@@ -12,16 +12,25 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Plus } from "lucide-react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { useCreateLanguge } from "../hooks/useCreateLanguge";
 import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 import { CreateLanguageRequest } from "../types/createLanguageRequest.dto";
 import { useEffect, useState } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useGetShadowLanguages } from "../hooks/useGetShadowLanguages";
 
 type Inputs = {
   name: string;
   description: string;
+  shadowLanguage: string;
 };
 
 export default function LanguageAddingDialog() {
@@ -31,9 +40,11 @@ export default function LanguageAddingDialog() {
     handleSubmit,
     reset: resetForm,
     formState: { errors },
+    control,
   } = useForm<Inputs>();
   const createLanguageMutation = useCreateLanguge();
   const { userId } = useSelector((state: RootState) => state.auth);
+  const { data: shadowLanguages } = useGetShadowLanguages();
 
   const onSubmit = (data: Inputs) => {
     const createLanguageData: CreateLanguageRequest = {
@@ -50,6 +61,10 @@ export default function LanguageAddingDialog() {
       setIsOpen(false);
     }
   }, [createLanguageMutation.isSuccess, resetForm]);
+
+  if (!shadowLanguages) {
+    return;
+  }
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -107,6 +122,34 @@ export default function LanguageAddingDialog() {
                   "Description is required and must be between 5-200 chars."
                 </span>
               )}
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="shadowLanguage">Shadow Language:</Label>
+              <Controller
+                name="shadowLanguage"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    value={field.value}
+                    onValueChange={(value) => field.onChange(value)}
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Choose a shadow language" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {shadowLanguages.map((language) => (
+                        <SelectItem
+                          key={language.value + "shadowlanguage"}
+                          value={language.value}
+                        >
+                          {language.value}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
+              />
             </div>
           </div>
 

@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { CardDescription, CardTitle } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import ROUTES from "@/routes/Routes.enum";
 import { Note } from "@/types/entities/note.entity";
 import { ArrowLeft } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import TTSPlayer from "./TTSPlayer";
 
 export default function NoteDetailedCardTitle({ note }: { note: Note }) {
   return (
@@ -24,6 +26,14 @@ export default function NoteDetailedCardTitle({ note }: { note: Note }) {
             {note.description && `Description: ${note.description}`}
           </CardDescription>
         </div>
+      </div>
+      <div
+        className={cn(
+          "ml-5 cursor-pointer",
+          !note.language.shadowLanguage ? "hidden" : "",
+        )}
+      >
+        <TTSPlayer text={note.name} language={note.language.shadowLanguage} />
       </div>
     </div>
   );

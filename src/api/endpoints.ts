@@ -1,15 +1,16 @@
-const STATIC_URL = "http://192.168.249.223:3005";
 // const STATIC_URL = "http://localhost:3005";
-const BASE_URL = `${STATIC_URL}/api`;
 // const BASE_URL = "http://192.168.111.223:3005/api";
 // const BASE_URL = "http://192.168.1.30:3005/api";
 
-import { PostType } from "@/pages/social/enum/postType";
 // const BASE_URL = "http://localhost:3005/api";
+import { PostType } from "@/pages/social/enum/postType";
+const STATIC_URL = "http://192.168.249.223:3005";
+const BASE_URL = `${STATIC_URL}/api`;
 
 export const Endpoints = {
   BASE_URL,
   GET_IMAGE: (path: string) => (path ? `${STATIC_URL}/${path}` : ""),
+  GET_TTS_AUDIO: (path: string) => (path ? `${STATIC_URL}/${path}` : ""),
 
   // Auth endpoints
   LOGIN: `${BASE_URL}/auth/login`,
@@ -35,6 +36,7 @@ export const Endpoints = {
   LANGUAGES_BY_USER_ID: (id: string) => `${BASE_URL}/languages/user/${id}`,
   LANGUAGE_NOTE_COUNT_BY_ID: (id: string) =>
     `${BASE_URL}/languages/note-counts/${id}`,
+  SHADOW_LANGUAGES: `${BASE_URL}/languages/shadow-languages/get`,
 
   // Note endpoints
   NOTES: `${BASE_URL}/notes`,
@@ -73,4 +75,8 @@ export const Endpoints = {
     `${BASE_URL}/social-posts?page=${page}&type=${type}&username=${username}`,
   SOCIAL_POST_ADD_POSITIVE_ACTION: `${BASE_URL}/social-posts/add-positive-action`,
   SOCIAL_POST_REMOVE_POSITIVE_ACTION: `${BASE_URL}/social-posts/remove-positive-action`,
+
+  // TTS endpoints
+  TTS: `${BASE_URL}/tts`,
+  GET_TTS_SPEEDS: `${BASE_URL}/tts/speeds`,
 };

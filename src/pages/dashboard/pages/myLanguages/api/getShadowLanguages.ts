@@ -1,8 +1,7 @@
 import { Endpoints } from "@/api/endpoints";
-import { Language } from "@/types/entities/language.entity";
 
-export async function getLanguagesByUserIdApi(data: string) {
-  return await fetch(Endpoints.LANGUAGES_BY_USER_ID(data), {
+export async function getShadowLanguagesApi() {
+  return await fetch(Endpoints.SHADOW_LANGUAGES, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -11,11 +10,11 @@ export async function getLanguagesByUserIdApi(data: string) {
   })
     .then((res) => {
       if (!res.ok) {
-        throw new Error("Failed to fetch languages");
+        throw new Error("Failed to fetch shadow languages");
       }
       return res.json();
     })
-    .then((data) => data as Language[])
+    .then((data) => data as { language: string; value: string }[])
     .catch((error) => {
       throw error;
     });
