@@ -25,6 +25,8 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
+import { NoteIntensityTypes } from "@/types/enums/NoteIntensityTypes";
 
 export default function QuizPracticePage() {
   const { languageId } = useParams();
@@ -32,8 +34,13 @@ export default function QuizPracticePage() {
     languageId!,
   );
   const { data: languageData, isLoading } = useGetLanguageById(languageId!);
-  const quizPracticeStartMutation = useStartQuizPractice(languageId!);
-  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState<NoteIntensityTypes>(
+    NoteIntensityTypes.All,
+  );
+  const quizPracticeStartMutation = useStartQuizPractice(
+    languageId!,
+    selectedCategory,
+  );
 
   const { isQuizPracticeStarted } = useSelector(
     (state: RootState) => state.quizPractice,
@@ -49,37 +56,37 @@ export default function QuizPracticePage() {
 
   const intensityLevels = [
     {
-      key: "all",
+      key: NoteIntensityTypes.All,
       label: "All notes",
       color: "bg-primary",
       count: languageNoteCountsData.totalCount,
     },
     {
-      key: "low",
+      key: NoteIntensityTypes.Low,
       label: "Low intensity notes",
       color: "bg-[#f04b43]",
       count: languageNoteCountsData.lowIntensityCount,
     },
     {
-      key: "low-medium",
+      key: NoteIntensityTypes.LowMedium,
       label: "Low-medium intensity notes",
       color: "bg-[#df9140]",
       count: languageNoteCountsData.lowMediumIntensityCount,
     },
     {
-      key: "medium",
+      key: NoteIntensityTypes.Medium,
       label: "Medium intensity notes",
       color: "bg-[#e8c468]",
       count: languageNoteCountsData.mediumIntensityCount,
     },
     {
-      key: "medium-high",
+      key: NoteIntensityTypes.MediumHigh,
       label: "Medium-high intensity notes",
       color: "bg-[#9bc172]",
       count: languageNoteCountsData.mediumHighIntensityCount,
     },
     {
-      key: "high",
+      key: NoteIntensityTypes.High,
       label: "High intensity notes",
       color: "bg-[#10b97b]",
       count: languageNoteCountsData.highIntensityCount,
@@ -119,34 +126,54 @@ export default function QuizPracticePage() {
 
         <CardContent className="flex flex-col items-center justify-center gap-8">
           <div
-            className={`mt-5 space-y-2 ${isQuizPracticeStarted ? "hidden" : ""}`}
+            className={`mt-5 flex w-[20%] flex-col items-center justify-center gap-4 ${isQuizPracticeStarted ? "hidden" : ""}`}
           >
-            <Label>Choose a note category to start quiz</Label>
-            <Select
-              disabled={isQuizPracticeStarted}
-              defaultValue="all"
-              value={selectedCategory}
-              onValueChange={(value) => setSelectedCategory(value)}
+            <div className="space-y-2">
+              <Label>Choose a note category to start quiz</Label>
+              <Select
+                disabled={isQuizPracticeStarted}
+                defaultValue={NoteIntensityTypes.All}
+                value={selectedCategory}
+                onValueChange={(value) =>
+                  setSelectedCategory(value as NoteIntensityTypes)
+                }
+              >
+                <SelectTrigger className="w-[300px]">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="flex flex-col justify-center gap-4">
+                  {intensityLevels.map(({ key, label, color, count }) => (
+                    <SelectItem key={key} value={key} className="flex">
+                      <div className="flex items-center gap-3">
+                        {label}: {count}
+                        <div className={`${color} size-2 rounded-full`}></div>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <p
+              className={cn(
+                "text-center text-sm",
+                (intensityLevels.find(
+                  (option) => option.key === selectedCategory,
+                )?.count as number) < 10
+                  ? ""
+                  : "hidden",
+              )}
             >
-              <SelectTrigger className="w-[300px]">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent className="flex flex-col justify-center gap-4">
-                {intensityLevels.map(({ key, label, color, count }) => (
-                  <SelectItem key={key} value={key} className="flex">
-                    <div className="flex items-center gap-3">
-                      {label}: {count}
-                      <div className={`${color} size-2 rounded-full`}></div>
-                    </div>
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+              Note count for this category must be at least 10 to start quiz.
+            </p>
           </div>
 
           {!isQuizPracticeStarted && (
             <Button
-              disabled={languageNoteCountsData.totalCount < 10}
+              disabled={
+                (intensityLevels.find(
+                  (option) => option.key === selectedCategory,
+                )?.count as number) < 10
+              }
               onClick={handleStartQuizPractice}
               className="mt-8"
             >

@@ -21,6 +21,10 @@ export function useCreateNote() {
         queryKey: ["getNotesByLanguageId"],
         exact: false,
       });
+      queryClient.invalidateQueries({
+        queryKey: ["getLanguageNoteCountsById"],
+        exact: false,
+      });
     },
     onError: (error) => {
       toast({
