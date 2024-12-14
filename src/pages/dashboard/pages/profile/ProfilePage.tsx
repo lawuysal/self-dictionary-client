@@ -19,7 +19,7 @@ export default function ProfilePage() {
           </div>
 
           {/* Trailing */}
-          <div className="flex w-full items-center justify-center gap-2 md:px-8"></div>
+          {/* <div className="flex w-full items-center justify-center gap-2 md:px-8"></div> */}
         </CardHeader>
         <CardContent>
           <ProfileUpdateForm />

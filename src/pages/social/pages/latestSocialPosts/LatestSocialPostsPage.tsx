@@ -1,3 +1,4 @@
+import Loader from "@/components/Loader";
 import SocialPostCard from "../../components/SocialPostCard";
 import { PostType } from "../../enum/postType";
 import { useGetSocialPosts } from "../../hooks/useGetSocialPosts";
@@ -12,7 +13,7 @@ export default function LatestSocialPostsPage() {
   } = useGetSocialPosts(PostType.LATEST_POSTS);
 
   if (!postsData || isLoading) {
-    return;
+    return <Loader />;
   }
 
   return (

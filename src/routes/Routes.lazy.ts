@@ -33,6 +33,13 @@ export const PracticePage = lazy(
   () => import("@/pages/dashboard/pages/practice/PracticePage"),
 );
 
+export const PracticeByLanguageIdPage = lazy(
+  () =>
+    import(
+      "@/pages/dashboard/pages/practice/pages/practiceByLanguage/PracticeByLanguageIdPage"
+    ),
+);
+
 export const QuizPracticePage = lazy(
   () => import("@/pages/dashboard/pages/practice/pages/quiz/QuizPracticePage"),
 );

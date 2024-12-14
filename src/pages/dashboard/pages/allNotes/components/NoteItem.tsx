@@ -2,11 +2,15 @@ import { Note } from "@/types/entities/note.entity";
 import IntensityBar from "./IntensityBar";
 import { NavLink } from "react-router-dom";
 import ROUTES from "@/routes/Routes.enum";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 export default function NoteItem({ note }: { note: Note }) {
+  const { currentPath } = useSelector((state: RootState) => state.navigation);
+
   return (
     <NavLink
-      to={ROUTES.NOTE_BY_ID_GEN(note.languageId, note.id)}
+      to={ROUTES.NOTE_BY_ID_GEN(note.languageId, note.id, currentPath)}
       className="group flex w-[90%] flex-col gap-1 rounded-lg border bg-background p-4 shadow-md transition-all duration-200 ease-in-out hover:cursor-pointer hover:bg-muted/40 hover:shadow-lg"
     >
       <div className="flex items-center justify-between">

@@ -58,26 +58,3 @@ export default function MyLanguagesPage() {
     </main>
   );
 }
-
-// const myLanguages: Language[] = [
-//   {
-//     name: "English",
-//     description:
-//       "English is a West Germanic language first spoken in early medieval England, which has become the leading language of international discourse in the 21st century.",
-//   },
-//   {
-//     name: "Spanish",
-//     description:
-//       "Spanish is a Romance language that originated in the Iberian Peninsula of Europe. Today, it is a global language with nearly 500 million native speakers, mainly in Spain and the Americas.",
-//   },
-//   {
-//     name: "French",
-//     description:
-//       "French is a Romance language of the Indo-European family. It descended from the Vulgar Latin of the Roman Empire, as did all Romance languages.",
-//   },
-//   {
-//     name: "German",
-//     description:
-//       "German is a West Germanic language that is mainly spoken in Central Europe. It is the most widely spoken and official or co-official language in Germany, Austria, Switzerland, Liechtenstein, and South Tyrol in Italy.",
-//   },
-// ];

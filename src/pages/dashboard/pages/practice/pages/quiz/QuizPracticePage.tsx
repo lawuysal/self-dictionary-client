@@ -100,7 +100,7 @@ export default function QuizPracticePage() {
           {/* title */}
           <div className="flex h-full w-full flex-row items-center justify-start gap-2 justify-self-start md:w-fit md:flex-row md:items-center">
             <div className="h-full">
-              <NavLink to={ROUTES.PRACTICE_GEN(languageId!)}>
+              <NavLink to={ROUTES.PRACTICE_BY_LANGUAGE_ID_GEN(languageId!)}>
                 <Button size="icon" variant="ghost" className="h-full">
                   <ArrowLeft className="size-6" />
                 </Button>

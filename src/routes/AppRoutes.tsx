@@ -14,13 +14,14 @@ import {
   ProfilePage,
   LanguageByIdPage,
   NoteByIdPage,
-  PracticePage,
+  PracticeByLanguageIdPage,
   QuizPracticePage,
   SocialPage,
   SocialProfilePage,
   PositiveActionedSocialPostsPage,
   MySocialPostsPage,
   MyFollowingsSocialPostsPage,
+  PracticePage,
 } from "@/routes/Routes.lazy";
 import Loader from "@/components/Loader";
 import { AlreadyAuthedRedirect } from "@/routes/redirects/AlreadyAuthedRedirect";
@@ -93,6 +94,10 @@ export function AppRoutes() {
               <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
               <Route path={ROUTES.PREFERENCES} element={<PreferencesPage />} />
               <Route path={ROUTES.PRACTICE} element={<PracticePage />} />
+              <Route
+                path={ROUTES.PRACTICE_BY_LANGUAGE_ID}
+                element={<PracticeByLanguageIdPage />}
+              />
               <Route
                 path={ROUTES.QUIZ_PRACTICE}
                 element={<QuizPracticePage />}

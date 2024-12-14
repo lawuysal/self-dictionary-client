@@ -9,6 +9,7 @@ import {
   Languages,
   LayoutDashboard,
   Notebook,
+  NotebookPen,
   Settings,
   UserRound,
 } from "lucide-react";
@@ -60,6 +61,17 @@ export default function DashboardSidebar() {
             </NavLink>
           </TooltipTrigger>
           <TooltipContent side="right">All notes</TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <NavLink
+              to={ROUTES.PRACTICE}
+              className={`flex h-9 w-9 items-center ${currentPath.split("/")[2] === "practice" ? "border bg-muted text-foreground" : "text-muted-foreground"} justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8`}
+            >
+              <NotebookPen size={22} />
+            </NavLink>
+          </TooltipTrigger>
+          <TooltipContent side="right">Practice</TooltipContent>
         </Tooltip>
         <Tooltip>
           <TooltipTrigger asChild>

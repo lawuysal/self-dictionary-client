@@ -4,14 +4,21 @@ import { cn } from "@/lib/utils";
 import ROUTES from "@/routes/Routes.enum";
 import { Note } from "@/types/entities/note.entity";
 import { ArrowLeft } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useSearchParams } from "react-router-dom";
 import TTSPlayer from "./TTSPlayer";
 
 export default function NoteDetailedCardTitle({ note }: { note: Note }) {
+  const [searchParams] = useSearchParams();
   return (
     <div className="flex h-full w-full flex-row items-center gap-2 justify-self-start md:w-fit md:flex-row md:items-center">
       <div className="h-full">
-        <NavLink className="" to={ROUTES.LANGUAGE_BY_ID_GEN(note.languageId)}>
+        <NavLink
+          className=""
+          to={
+            searchParams.get("origin") ||
+            ROUTES.LANGUAGE_BY_ID_GEN(note.languageId)
+          }
+        >
           <Button size="icon" variant="ghost" className="h-full">
             <ArrowLeft className="size-6" />
           </Button>

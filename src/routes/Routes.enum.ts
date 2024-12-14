@@ -15,13 +15,15 @@ const ROUTES = {
   LANGUAGE_BY_ID: "/dashboard/my-languages/:id",
   LANGUAGE_BY_ID_GEN: (id: string) => `/dashboard/my-languages/${id}`,
   NOTE_BY_ID: "/dashboard/my-languages/:languageId/notes/:noteId",
-  NOTE_BY_ID_GEN: (languageId: string, noteId: string) =>
-    `/dashboard/my-languages/${languageId}/notes/${noteId}`,
+  NOTE_BY_ID_GEN: (languageId: string, noteId: string, origin: string) =>
+    `/dashboard/my-languages/${languageId}/notes/${noteId}?origin=${origin}`,
   ALL_NOTES: "/dashboard/all-notes",
   PROFILE: "/dashboard/profile",
   PREFERENCES: "/dashboard/preferences",
-  PRACTICE: "/dashboard/practice/:languageId",
-  PRACTICE_GEN: (languageId: string) => `/dashboard/practice/${languageId}`,
+  PRACTICE: "/dashboard/practice",
+  PRACTICE_BY_LANGUAGE_ID: "/dashboard/practice/:languageId",
+  PRACTICE_BY_LANGUAGE_ID_GEN: (languageId: string, origin: string) =>
+    `/dashboard/practice/${languageId}?origin=${origin}`,
   QUIZ_PRACTICE: "/dashboard/practice/quiz/:languageId",
   QUIZ_PRACTICE_GEN: (languageId: string) =>
     `/dashboard/practice/quiz/${languageId}`,

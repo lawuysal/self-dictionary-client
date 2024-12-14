@@ -12,6 +12,7 @@ import {
   Languages,
   LayoutDashboard,
   Notebook,
+  NotebookPen,
   PanelRight,
   Settings,
   UserRound,
@@ -71,6 +72,17 @@ export default function DashboardMobileSidebar() {
             <SheetClose asChild>
               <div className="flex w-full items-center gap-3">
                 <Notebook size={20} /> All notes
+              </div>
+            </SheetClose>
+          </NavLink>
+
+          <NavLink
+            to={ROUTES.PRACTICE}
+            className={`rounded-md ${currentPath.split("/")[2] === "practice" ? "bg-muted" : ""} flex items-center px-2 py-1 hover:bg-muted/40`}
+          >
+            <SheetClose asChild>
+              <div className="flex w-full items-center gap-3">
+                <NotebookPen size={20} /> Practice
               </div>
             </SheetClose>
           </NavLink>
