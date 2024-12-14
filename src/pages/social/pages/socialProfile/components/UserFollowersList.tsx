@@ -36,7 +36,7 @@ function UserFollowersList({
           followers
         </p>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="w-[350px] rounded-lg md:w-[450px]">
         <DialogHeader>
           <DialogTitle>Followers ({followers?.length || "0"})</DialogTitle>
           <DialogDescription></DialogDescription>

@@ -31,7 +31,7 @@ function OtherPositiveActionUsersList({
       <DialogTrigger className="hover:text-foreground">
         <p className="cursor-pointer">{positiveActionUsers.length - 1} other</p>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="w-[350px] rounded-lg md:w-[450px]">
         <DialogHeader>
           <DialogTitle>
             People supported this post ({positiveActionUsers?.length || "0"})

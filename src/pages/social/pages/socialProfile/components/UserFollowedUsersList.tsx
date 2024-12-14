@@ -36,7 +36,7 @@ function UserFollowedUsersList({
           following
         </p>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="w-[350px] rounded-lg md:w-[450px]">
         <DialogHeader>
           <DialogTitle>Following ({followedUsers?.length || "0"})</DialogTitle>
           <DialogDescription></DialogDescription>
