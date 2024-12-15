@@ -51,7 +51,7 @@ export const useLogin = () => {
         dispatch(getPreference(preference));
       }
 
-      waitAndExecute(1000, () => navigate(ROUTES.HOME, { replace: true }));
+      waitAndExecute(1000, () => navigate(ROUTES.DASHBOARD, { replace: true }));
     },
     onError: (error) => {
       toast({

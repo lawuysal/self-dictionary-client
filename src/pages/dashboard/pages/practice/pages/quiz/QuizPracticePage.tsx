@@ -94,8 +94,8 @@ export default function QuizPracticePage() {
   ];
 
   return (
-    <main className="mt-2 flex w-full justify-center md:mt-5">
-      <Card className="h-[90svh] w-[95%] md:h-[88svh]">
+    <main className="mt-2 flex w-full justify-center md:mt-5 md:pl-9">
+      <Card className="h-[90svh] w-[95%] md:h-[88svh] md:w-full">
         <CardHeader className="grid grid-cols-1 place-items-center gap-2 rounded-t-lg border-b bg-background p-4 dark:bg-primary/10 md:p-6 lg:grid lg:grid-cols-3 lg:grid-rows-1">
           {/* title */}
           <div className="flex h-full w-full flex-row items-center justify-start gap-2 justify-self-start md:w-fit md:flex-row md:items-center">
@@ -118,15 +118,15 @@ export default function QuizPracticePage() {
           </div>
 
           {/* <NotesSearchbar /> */}
-          <div className="hidden md:flex"></div>
+          {/* <div className="hidden md:flex"></div> */}
 
           {/* trailing */}
-          <div className="flex w-full items-center justify-center gap-2 md:px-8"></div>
+          {/* <div className="flex w-full items-center justify-center gap-2 md:px-8"></div> */}
         </CardHeader>
 
         <CardContent className="flex flex-col items-center justify-center gap-8">
           <div
-            className={`mt-5 flex w-[20%] flex-col items-center justify-center gap-4 ${isQuizPracticeStarted ? "hidden" : ""}`}
+            className={`mt-5 flex flex-col items-center justify-center gap-4 md:w-[20%] ${isQuizPracticeStarted ? "hidden" : ""}`}
           >
             <div className="space-y-2">
               <Label>Choose a note category to start quiz</Label>

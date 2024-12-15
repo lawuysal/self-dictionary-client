@@ -22,7 +22,7 @@ const ROUTES = {
   PREFERENCES: "/dashboard/preferences",
   PRACTICE: "/dashboard/practice",
   PRACTICE_BY_LANGUAGE_ID: "/dashboard/practice/:languageId",
-  PRACTICE_BY_LANGUAGE_ID_GEN: (languageId: string, origin: string) =>
+  PRACTICE_BY_LANGUAGE_ID_GEN: (languageId: string, origin?: string) =>
     `/dashboard/practice/${languageId}?origin=${origin}`,
   QUIZ_PRACTICE: "/dashboard/practice/quiz/:languageId",
   QUIZ_PRACTICE_GEN: (languageId: string) =>

@@ -30,8 +30,8 @@ export default function PracticePage() {
   }
 
   return (
-    <main className="mt-2 flex w-full justify-center md:mt-5">
-      <Card className="h-[90svh] w-[95%] md:h-[88svh]">
+    <main className="mt-2 flex w-full justify-center md:mt-5 md:pl-9">
+      <Card className="h-[90svh] w-[95%] md:h-[88svh] md:w-full">
         <CardHeader className="flex flex-row items-center justify-between rounded-t-lg border-b bg-background dark:bg-primary/10">
           <div className="flex flex-col gap-2">
             <CardTitle>Practice</CardTitle>

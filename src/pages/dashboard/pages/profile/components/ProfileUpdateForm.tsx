@@ -71,7 +71,7 @@ export default function ProfileUpdateForm() {
 
   return (
     <form
-      className="mx-auto mt-5 flex flex-col space-y-2 md:w-1/2"
+      className="mx-auto mt-5 flex flex-col space-y-2 md:w-1/2 md:space-y-5"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="space-y-2">
@@ -122,7 +122,7 @@ export default function ProfileUpdateForm() {
         )}
       </div>
 
-      <div className="grid grid-rows-2 gap-4 md:grid-cols-2">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-2">
         <div className="space-y-1">
           <Label htmlFor="firstName">First name</Label>
           <Input

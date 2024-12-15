@@ -48,8 +48,8 @@ export default function LanguageByIdPage() {
   }
 
   return (
-    <main className="mt-2 flex w-full justify-center overflow-hidden md:mt-5">
-      <Card className="h-[90svh] w-[95%] md:h-[88svh]">
+    <main className="mt-2 flex w-full justify-center overflow-hidden md:mt-5 md:pl-9">
+      <Card className="h-[90svh] w-[95%] md:h-[88svh] md:w-full">
         <CardHeader className="grid grid-cols-1 place-items-center gap-2 rounded-t-lg border-b bg-background p-4 dark:bg-primary/10 md:p-6 lg:grid lg:grid-cols-3 lg:grid-rows-1">
           {/* title */}
           <div className="flex h-full w-full flex-row items-center justify-start gap-2 justify-self-start md:w-fit md:flex-row md:items-center">
