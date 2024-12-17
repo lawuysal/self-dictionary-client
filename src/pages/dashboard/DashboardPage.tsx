@@ -32,7 +32,7 @@ export default function DashboardPage() {
             <div className="ml-6 mt-5 flex h-fit w-fit items-start justify-start">
               <h1 className="text-2xl font-semibold">Dashboard</h1>
             </div>
-            <section className="grid w-full grid-cols-1 items-start justify-center gap-4 md:grid-cols-3">
+            <section className="grid w-full grid-cols-1 items-start justify-center gap-4 md:grid-cols-2">
               <AverageIntensityChart />
               <LatestQuizScoresChart />
               <LanguageNoteCountsChart />

@@ -52,7 +52,7 @@ export function TTSPlayer({
       <audio ref={audioRef} onEnded={() => setIsPlaying(false)} />
       <Volume2
         className={cn(
-          "size-8",
+          "size-8 text-foreground",
           isPlaying
             ? "text-primary hover:text-primary/90"
             : "hover:text-foreground/90",

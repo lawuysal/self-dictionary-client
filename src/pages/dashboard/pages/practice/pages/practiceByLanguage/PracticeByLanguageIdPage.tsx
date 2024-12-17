@@ -59,7 +59,7 @@ export default function PracticeByLanguageIdPage() {
           <h2 className="mt-10 text-2xl font-semibold text-primary">
             Select a practice method
           </h2>
-          <div className="grid w-[50%] grid-cols-2 place-items-center items-center gap-4 rounded-md">
+          <div className="grid grid-cols-1 place-items-center items-center gap-4 rounded-md md:w-[50%] md:grid-cols-2">
             <div className="flex h-full w-full cursor-pointer flex-col gap-2 rounded-md border hover:bg-primary/10">
               <h3 className="border-b bg-background p-4 text-lg font-semibold dark:bg-primary/10">
                 Flashcards
@@ -69,7 +69,7 @@ export default function PracticeByLanguageIdPage() {
 
             <NavLink
               to={ROUTES.QUIZ_PRACTICE_GEN(languageId!)}
-              className="flex h-full w-full cursor-pointer flex-col gap-2 rounded-md border hover:bg-primary/10"
+              className="flex w-full cursor-pointer flex-col gap-2 rounded-md border hover:bg-primary/10 md:h-full"
             >
               <h3 className="border-b bg-background p-4 text-lg font-semibold dark:bg-primary/10">
                 Quiz

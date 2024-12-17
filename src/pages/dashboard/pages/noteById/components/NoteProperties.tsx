@@ -23,7 +23,7 @@ export default function NoteProperties({
           {properties.map((prop, index) => (
             <div
               key={index}
-              className="flex w-[90%] cursor-pointer flex-col gap-2 rounded-lg border p-4 transition-colors duration-200 ease-in-out hover:bg-primary/10"
+              className="flex w-[90%] cursor-pointer flex-col gap-2 rounded-lg border p-4 shadow-md transition-colors duration-200 ease-in-out hover:bg-primary/10"
             >
               <h3 className="text-primary">{prop.name}:</h3>
               <p className="">{prop.value}</p>
