@@ -1,9 +1,11 @@
+import { NoteProperty } from "./noteProperty.entity";
+
 export interface Note {
   id: string;
   name: string;
   description: string;
   translation: string;
-  properties: string;
+  properties: NoteProperty[];
   intensity: number;
   isPublic: boolean;
   createdAt: Date;
@@ -11,5 +13,6 @@ export interface Note {
   languageId: string;
   language: {
     shadowLanguage: string;
+    ownerId: string;
   };
 }

@@ -1,6 +1,7 @@
-import { Pencil, Plus, Trash } from "lucide-react";
+import { Trash } from "lucide-react";
 import { Note } from "@/types/entities/note.entity";
 import NoteUpdatingDialog from "./NoteUpdatingDialog";
+import NotePropertyAddingDialog from "./NotePropertyAddingDialog";
 
 export default function NoteMenu({ note }: { note: Note }) {
   return (
@@ -12,14 +13,7 @@ export default function NoteMenu({ note }: { note: Note }) {
       {/* Content */}
       <div className="flex w-full flex-row items-center justify-center gap-2 md:mt-5 md:flex-col">
         {/* Add New Property */}
-        <div className="flex w-full items-center justify-center">
-          <button className="flex items-center justify-start gap-2 rounded border bg-primary/10 p-2 text-sm hover:bg-primary/20 md:w-[85%]">
-            <div className="flex size-5 items-center justify-center rounded-sm md:border md:bg-primary/30">
-              <Plus className="size-5 md:size-3" />
-            </div>
-            <p className="hidden md:flex">Add New Property</p>
-          </button>
-        </div>
+        <NotePropertyAddingDialog noteId={note.id} />
 
         {/* Edit Note */}
         <NoteUpdatingDialog note={note} />

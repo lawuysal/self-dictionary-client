@@ -11,10 +11,10 @@ export default function NoteDetailedCardTitle({ note }: { note: Note }) {
   const [searchParams] = useSearchParams();
   return (
     <div className="flex h-full w-full flex-row items-center justify-between gap-2">
-      <div className="flex items-center justify-start gap-2">
+      <div className="flex h-full items-center justify-start gap-2">
         <div className="h-full">
           <NavLink
-            className=""
+            className="h-full"
             to={
               searchParams.get("origin") ||
               ROUTES.LANGUAGE_BY_ID_GEN(note.languageId)

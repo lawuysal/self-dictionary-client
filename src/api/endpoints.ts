@@ -79,4 +79,8 @@ export const Endpoints = {
   // TTS endpoints
   TTS: `${BASE_URL}/tts`,
   GET_TTS_SPEEDS: `${BASE_URL}/tts/speeds`,
+
+  // Generative AI endpoints
+  GENERATIVE_AI: `${BASE_URL}/generative-ai`,
+  GENERATIVE_AI_GET_SENTENCE: `${BASE_URL}/generative-ai/get-sentence`,
 };

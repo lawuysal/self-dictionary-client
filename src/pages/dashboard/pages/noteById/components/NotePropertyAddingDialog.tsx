@@ -14,16 +14,19 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Plus } from "lucide-react";
+import { useCreateNoteProperty } from "../hooks/useCreateNoteProperty";
+import { CreateNotePropertyRequestDto } from "../types/createNotePropertyRequest.dto";
 
 type Inputs = {
   name: string;
   value: string;
+  description: string;
 };
 
-export default function NoteAddingDialog({
-  languageId,
+export default function NotePropertyAddingDialog({
+  noteId,
 }: {
-  languageId: string;
+  noteId: string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const {
@@ -32,23 +35,23 @@ export default function NoteAddingDialog({
     reset: resetForm,
     formState: { errors },
   } = useForm<Inputs>();
-  const createNoteMutation = useCreateNote();
+  const createNotePropertyMutation = useCreateNoteProperty(noteId);
 
   function onSubmit(data: Inputs) {
-    const createNoteData: CreateNoteRequestDto = {
+    const createNotePropertyData: CreateNotePropertyRequestDto = {
       ...data,
-      languageId,
+      noteId,
     };
 
-    createNoteMutation.mutate(createNoteData);
+    createNotePropertyMutation.mutate(createNotePropertyData);
   }
 
   useEffect(() => {
-    if (createNoteMutation.isSuccess) {
+    if (createNotePropertyMutation.isSuccess) {
       resetForm();
       setIsOpen(false);
     }
-  }, [createNoteMutation.isSuccess, resetForm]);
+  }, [createNotePropertyMutation.isSuccess, resetForm]);
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -77,18 +80,18 @@ export default function NoteAddingDialog({
               <Label htmlFor="name">Name:</Label>
               <Input
                 autoComplete="off"
-                placeholder="e.g. Accumulate"
+                placeholder="e.g. Past Tense"
                 type="text"
                 id="name"
                 {...register("name", {
                   required: true,
                   minLength: 1,
-                  maxLength: 150,
+                  maxLength: 50,
                 })}
               />
               {errors.name && (
                 <span className="text-xs text-destructive">
-                  "Name is required and must be between 1-150 chars."
+                  "Name is required and must be between 1-50 chars."
                 </span>
               )}
             </div>
@@ -108,6 +111,25 @@ export default function NoteAddingDialog({
               {errors.value && (
                 <span className="text-xs text-destructive">
                   "Value is required and must be between 1-150 chars."
+                </span>
+              )}
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="description">Description:</Label>
+              <Input
+                autoComplete="off"
+                type="text"
+                id="description"
+                {...register("description", {
+                  required: true,
+                  minLength: 1,
+                  maxLength: 150,
+                })}
+              />
+              {errors.description && (
+                <span className="text-xs text-destructive">
+                  "Description is required and must be between 1-150 chars."
                 </span>
               )}
             </div>

@@ -1,11 +1,13 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { NoteProperty } from "@/types/entities/noteProperty.entity";
+import NotePropertyEditingDialog from "./NotePropertyEditingDialog";
 
 export default function NoteProperties({
   properties,
 }: {
-  properties: { name: string; value: string }[] | null;
+  properties: NoteProperty[];
 }) {
-  if (!properties) {
+  if (!properties || properties.length === 0) {
     return (
       <div className="flex w-full items-center justify-center gap-2 rounded-lg border p-4 dark:bg-primary/10">
         <p className="text-primary">No properties to show</p>
@@ -19,15 +21,16 @@ export default function NoteProperties({
         <h3 className="font-semibold">Properties ( {properties.length} )</h3>
       </label>
       <ScrollArea className="flex h-full max-h-[65svh] w-full flex-col overflow-y-auto md:max-h-[55svh]">
-        <div className="mx-auto grid w-full grid-cols-1 place-items-center gap-3 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto grid w-full grid-cols-1 place-items-center gap-3 md:grid-cols-2 lg:grid-cols-2">
           {properties.map((prop, index) => (
-            <div
+            <NotePropertyEditingDialog
               key={index}
-              className="flex w-[90%] cursor-pointer flex-col gap-2 rounded-lg border p-4 shadow-md transition-colors duration-200 ease-in-out hover:bg-primary/10"
-            >
-              <h3 className="text-primary">{prop.name}:</h3>
-              <p className="">{prop.value}</p>
-            </div>
+              notePropertyId={prop.id}
+              noteId={prop.noteId}
+              name={prop.name}
+              value={prop.value}
+              description={prop.description}
+            />
           ))}
         </div>
       </ScrollArea>
