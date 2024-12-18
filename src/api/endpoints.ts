@@ -63,6 +63,10 @@ export const Endpoints = {
     `${BASE_URL}/notes/quiz/language/${languageId}`,
   GET_QUIZ_QUESTION_ANSWER: (noteId: string) =>
     `${BASE_URL}/notes/quiz/question/answer/${noteId}`,
+  CREATE_NOTE_PROPERTY: `${BASE_URL}/notes/create/note-property`,
+  UPDATE_NOTE_PROPERTY: `${BASE_URL}/notes/update/note-property`,
+  DELETE_NOTE_PROPERTY: (notePropertyId: string) =>
+    `${BASE_URL}/notes/delete/note-property/${notePropertyId}`,
 
   // Social endpoints
   SOCIAL_POSTS: `${BASE_URL}/social-posts`,
