@@ -37,11 +37,12 @@ export default function EmailSignup() {
     <form onSubmit={handleSubmit}>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
-          <Label htmlFor="email">Email:</Label>
+          <Label htmlFor="SD-signup-email">Email:</Label>
           <Input
             type="email"
-            id="email"
+            id="SD-signup-email"
             placeholder="Email"
+            autoComplete="off"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -49,13 +50,14 @@ export default function EmailSignup() {
         </div>
 
         <div className="flex flex-col gap-2">
-          <Label htmlFor="password">Password:</Label>
+          <Label htmlFor="SD-signup-password">Password:</Label>
           <div className="relative">
             <Input
               type={showPassword ? "text" : "password"}
-              id="password"
+              id="SD-signup-password"
               placeholder="Password"
               required
+              autoComplete="off"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />

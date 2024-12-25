@@ -1,10 +1,10 @@
-// const STATIC_URL = "http://localhost:3005";
-// const BASE_URL = "http://192.168.111.223:3005/api";
-// const BASE_URL = "http://192.168.1.30:3005/api";
-
-// const BASE_URL = "http://localhost:3005/api";
 import { PostType } from "@/pages/social/enum/postType";
-const STATIC_URL = "http://192.168.249.223:3005";
+
+const ENV = import.meta.env.VITE_ENV;
+const STATIC_URL =
+  ENV === "PRODUCTION"
+    ? import.meta.env.VITE_SERVER_URL
+    : "http://192.168.249.223:3005";
 const BASE_URL = `${STATIC_URL}/api`;
 
 export const Endpoints = {
@@ -16,6 +16,7 @@ export const Endpoints = {
   LOGIN: `${BASE_URL}/auth/login`,
   SIGNUP: `${BASE_URL}/auth/signup`,
   ME: `${BASE_URL}/auth/me`,
+  VERIFY_EMAIL: (token: string) => `${BASE_URL}/auth/verify-email/${token}`,
 
   // User endpoints
   PROFILES: `${BASE_URL}/profiles`,

@@ -9,6 +9,9 @@ export const loginApi = async (email: string, password: string) => {
     body: JSON.stringify({ email, password }),
   })
     .then((res) => {
+      if (res.status === 401) {
+        throw new Error("Email is not verified");
+      }
       if (!res.ok) {
         throw new Error("Login failed");
       }

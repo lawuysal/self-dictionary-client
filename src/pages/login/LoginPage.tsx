@@ -15,7 +15,7 @@ import ROUTES from "@/routes/Routes.enum";
 export default function LoginPage() {
   return (
     <main className="flex min-h-[calc(100svh-68px)] flex-col items-center justify-center md:min-h-[calc(100svh-72px)]">
-      <Card className="w-[22rem] md:w-[26rem]">
+      <Card className="w-[90%] md:w-[26rem]">
         <CardHeader>
           <CardTitle>Login your account</CardTitle>
           <CardDescription>and continue to use Self Dictionary</CardDescription>

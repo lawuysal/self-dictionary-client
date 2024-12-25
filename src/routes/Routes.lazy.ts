@@ -75,3 +75,11 @@ export const MyFollowingsSocialPostsPage = lazy(
       "@/pages/social/pages/myFollowingsSocialPosts/MyFollowingsSocialPostsPage"
     ),
 );
+
+export const VerifyYourEmailPage = lazy(
+  () => import("@/pages/verifyYourEmail/VerifyYourEmailPage"),
+);
+
+export const VerifyEmailPage = lazy(
+  () => import("@/pages/verifyEmail/VerifyEmailPage"),
+);

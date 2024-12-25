@@ -22,6 +22,8 @@ import {
   MySocialPostsPage,
   MyFollowingsSocialPostsPage,
   PracticePage,
+  VerifyYourEmailPage,
+  VerifyEmailPage,
 } from "@/routes/Routes.lazy";
 import Loader from "@/components/Loader";
 import { AlreadyAuthedRedirect } from "@/routes/redirects/AlreadyAuthedRedirect";
@@ -110,6 +112,11 @@ export function AppRoutes() {
         <Route element={<AlreadyAuthedRedirect />}>
           <Route path={ROUTES.SIGNUP} element={<SignupPage />} />
           <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+          <Route
+            path={ROUTES.VERIFY_YOUR_EMAIL}
+            element={<VerifyYourEmailPage />}
+          />
+          <Route path={ROUTES.VERIFY_EMAIL} element={<VerifyEmailPage />} />
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />

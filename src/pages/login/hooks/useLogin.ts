@@ -1,7 +1,7 @@
 import { loginApi } from "@/api/auth/login.api";
 import { getPreferenceApi } from "@/api/user/getPreference.api";
 import { getProfileApi } from "@/api/user/getProfile.api";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { login } from "@/redux/slices/auth/authSlice";
 import { getPreference } from "@/redux/slices/user/userPrefrenceSlice";
 import { getProfile } from "@/redux/slices/user/userProfileSlice";
@@ -14,7 +14,6 @@ import { LoginUserResponse } from "../types/loginUserResponse.type";
 
 export const useLogin = () => {
   const navigate = useNavigate();
-  const { toast } = useToast();
   const dispatch = useDispatch();
 
   return useMutation({
@@ -30,9 +29,8 @@ export const useLogin = () => {
           hasProfile: data.hasProfile,
         }),
       );
-      toast({
-        title: "Login successful",
-        description: "You will be redirected to the home page",
+      toast("Login successful", {
+        description: "You will be redirected to Dashboard",
       });
 
       const profile = await getProfileApi()
@@ -54,11 +52,16 @@ export const useLogin = () => {
       waitAndExecute(1000, () => navigate(ROUTES.DASHBOARD, { replace: true }));
     },
     onError: (error) => {
-      toast({
-        title: "Login failed",
-        description: "Invalid email or password",
-        variant: "destructive",
-      });
+      if (error.message === "Email is not verified") {
+        toast.error("Email is not verified", {
+          description:
+            "Please verify your email before logging in. Check your email for verification link.",
+        });
+      } else {
+        toast.error("Login failed", {
+          description: "Invalid email or password",
+        });
+      }
       throw error;
     },
   });
