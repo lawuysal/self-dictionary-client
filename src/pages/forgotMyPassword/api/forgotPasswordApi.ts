@@ -1,20 +1,19 @@
-import { Endpoints } from "../endpoints";
+import { Endpoints } from "@/api/endpoints";
 
-export const signupApi = async (
+export const forgotPasswordApi = async (
   email: string,
-  password: string,
   captchaToken: string,
 ) => {
-  const data = await fetch(Endpoints.SIGNUP, {
+  const data = await fetch(Endpoints.FORGOT_PASSWORD, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, password, captchaToken }),
+    body: JSON.stringify({ email, captchaToken }),
   })
     .then((res) => {
       if (!res.ok) {
-        throw new Error("Signup failed");
+        throw new Error("Sending password reset link failed");
       }
       return res.json();
     })

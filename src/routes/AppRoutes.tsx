@@ -24,6 +24,8 @@ import {
   PracticePage,
   VerifyYourEmailPage,
   VerifyEmailPage,
+  ForgotMyPasswordPage,
+  ResetPasswordPage,
 } from "@/routes/Routes.lazy";
 import Loader from "@/components/Loader";
 import { AlreadyAuthedRedirect } from "@/routes/redirects/AlreadyAuthedRedirect";
@@ -117,6 +119,11 @@ export function AppRoutes() {
             element={<VerifyYourEmailPage />}
           />
           <Route path={ROUTES.VERIFY_EMAIL} element={<VerifyEmailPage />} />
+          <Route
+            path={ROUTES.FORGOT_MY_PASSWORD}
+            element={<ForgotMyPasswordPage />}
+          />
+          <Route path={ROUTES.RESET_PASSWORD} element={<ResetPasswordPage />} />
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />

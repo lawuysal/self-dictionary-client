@@ -9,14 +9,24 @@ const BASE_URL = `${STATIC_URL}/api`;
 
 export const Endpoints = {
   BASE_URL,
-  GET_IMAGE: (path: string) => (path ? `${STATIC_URL}/${path}` : ""),
-  GET_TTS_AUDIO: (path: string) => (path ? `${STATIC_URL}/${path}` : ""),
+  GET_IMAGE: (path: string) =>
+    path
+      ? `${STATIC_URL}${ENV === "PRODUCTION" ? "/static/" : "/"}${path}`
+      : "",
+  GET_TTS_AUDIO: (path: string) =>
+    path
+      ? `${STATIC_URL}${ENV === "PRODUCTION" ? "/static/" : "/"}${path}`
+      : "",
 
   // Auth endpoints
   LOGIN: `${BASE_URL}/auth/login`,
   SIGNUP: `${BASE_URL}/auth/signup`,
   ME: `${BASE_URL}/auth/me`,
   VERIFY_EMAIL: (token: string) => `${BASE_URL}/auth/verify-email/${token}`,
+  FORGOT_PASSWORD: `${BASE_URL}/auth/forgot-password`,
+  CHECK_PASSWORD_RESET_TOKEN: (token: string) =>
+    `${BASE_URL}/auth/reset-password/${token}`,
+  RESET_PASSWORD: (token: string) => `${BASE_URL}/auth/reset-password/${token}`,
 
   // User endpoints
   PROFILES: `${BASE_URL}/profiles`,

@@ -6,6 +6,8 @@ import { LoginUserRequestSchema } from "../types/loginUserRequest.type";
 import { useLogin } from "@/pages/login/hooks/useLogin";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useToast } from "@/hooks/use-toast";
+import { NavLink } from "react-router-dom";
+import ROUTES from "@/routes/Routes.enum";
 
 export default function EmailLogin() {
   const { toast } = useToast();
@@ -48,7 +50,6 @@ export default function EmailLogin() {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-
         <div className="flex flex-col gap-2">
           <Label htmlFor="password">Password:</Label>
           <div className="relative">
@@ -69,6 +70,9 @@ export default function EmailLogin() {
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </Button>
           </div>
+          <Button variant="link" type="button" className="h-fit w-fit p-0">
+            <NavLink to={ROUTES.FORGOT_MY_PASSWORD}>Forgot password?</NavLink>
+          </Button>
         </div>
         <Button type="submit" className="w-full">
           Login

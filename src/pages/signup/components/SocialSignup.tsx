@@ -5,6 +5,7 @@ export default function SocialSignup() {
   return (
     <div className="flex justify-between gap-2">
       <Button
+        disabled
         className="flex w-full items-center justify-center gap-2"
         variant="outline"
       >
@@ -12,6 +13,7 @@ export default function SocialSignup() {
         <p>Github</p>
       </Button>
       <Button
+        disabled
         className="flex w-full items-center justify-center gap-2"
         variant="outline"
       >

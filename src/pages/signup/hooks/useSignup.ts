@@ -10,8 +10,16 @@ export const useSignup = () => {
 
   return useMutation({
     mutationKey: ["signup"],
-    mutationFn: (credentials: { email: string; password: string }) =>
-      signupApi(credentials.email, credentials.password),
+    mutationFn: (credentials: {
+      email: string;
+      password: string;
+      captchaToken: string;
+    }) =>
+      signupApi(
+        credentials.email,
+        credentials.password,
+        credentials.captchaToken,
+      ),
     onSuccess: () => {
       toast.info("Signup successful", {
         description: "Now, you can verify your email.",

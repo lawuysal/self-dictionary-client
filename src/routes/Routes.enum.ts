@@ -7,6 +7,9 @@ const ROUTES = {
   VERIFY_EMAIL: "/verify-email/:token",
   VERIFY_YOUR_EMAIL: "/verifyYourEmail",
 
+  FORGOT_MY_PASSWORD: "/forgotMyPassword",
+  RESET_PASSWORD: "/reset-password/:token",
+
   CREATE_PROFILE: "/create-profile",
 
   SOCIAL: "/social",

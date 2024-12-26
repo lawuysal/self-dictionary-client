@@ -83,3 +83,11 @@ export const VerifyYourEmailPage = lazy(
 export const VerifyEmailPage = lazy(
   () => import("@/pages/verifyEmail/VerifyEmailPage"),
 );
+
+export const ForgotMyPasswordPage = lazy(
+  () => import("@/pages/forgotMyPassword/ForgotMyPasswordPage"),
+);
+
+export const ResetPasswordPage = lazy(
+  () => import("@/pages/resetPassword/ResetPasswordPage"),
+);
