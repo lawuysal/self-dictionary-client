@@ -2,7 +2,6 @@ import { Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import ROUTES from "./Routes.enum";
 import {
-  HomePage,
   SignupPage,
   LoginPage,
   CreateProfilePage,
@@ -46,7 +45,8 @@ export function AppRoutes() {
       <PracticeResetter />
 
       <Routes>
-        <Route path={ROUTES.HOME} element={<HomePage />} />
+        {/* <Route path={ROUTES.HOME} element={<HomePage />} /> */}
+        <Route path="/" element={<Navigate to={ROUTES.DASHBOARD} replace />} />
 
         {/* Create Profile Page */}
         <Route element={<RequireLoginRedirect />}>

@@ -29,7 +29,7 @@ export const useLogin = () => {
           hasProfile: data.hasProfile,
         }),
       );
-      toast("Login successful", {
+      toast.success("Login successful", {
         description: "You will be redirected to Dashboard",
       });
 

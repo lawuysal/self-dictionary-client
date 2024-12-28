@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { logout as logoutAction } from "@/redux/slices/auth/authSlice";
 import { useEffect } from "react";
 
-//This component will redirect the user to the home page if they are already logged in
+//This component will redirect the user to the dashboard page if they are already logged in
 export function AlreadyAuthedRedirect() {
   const dispatch = useDispatch();
   const getMeQuery = useGetMe();
@@ -25,5 +25,9 @@ export function AlreadyAuthedRedirect() {
     return <Loader />;
   }
 
-  return getMeQuery.data ? <Navigate to={ROUTES.HOME} replace /> : <Outlet />;
+  return getMeQuery.data ? (
+    <Navigate to={ROUTES.DASHBOARD} replace />
+  ) : (
+    <Outlet />
+  );
 }

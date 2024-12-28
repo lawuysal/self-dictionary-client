@@ -4,9 +4,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 
 export function AlreadyHasProfileRedirect() {
-  const { hasProfile } = useSelector((state: RootState) => state.auth);
+  const { firstName, username } = useSelector(
+    (state: RootState) => state.userProfile,
+  );
 
-  if (hasProfile) {
+  if (firstName && username) {
     return <Navigate to={ROUTES.DASHBOARD} replace />;
   }
 

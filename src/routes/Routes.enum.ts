@@ -1,5 +1,5 @@
 const ROUTES = {
-  HOME: "/",
+  HOME: "https://selfdictionary.com",
 
   SIGNUP: "/signup",
   LOGIN: "/login",

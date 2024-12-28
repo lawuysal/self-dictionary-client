@@ -4,14 +4,16 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 
 export function RequireProfileRedirect() {
-  const { hasProfile } = useSelector((state: RootState) => state.auth);
   const { token } = useSelector((state: RootState) => state.auth);
+  const { firstName, username } = useSelector(
+    (state: RootState) => state.userProfile,
+  );
 
   if (!token) {
     return <Navigate to={ROUTES.LOGIN} replace />;
   }
 
-  if (!hasProfile) {
+  if (!firstName || !username) {
     return <Navigate to={ROUTES.CREATE_PROFILE} replace />;
   }
 
