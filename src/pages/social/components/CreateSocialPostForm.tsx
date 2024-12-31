@@ -22,7 +22,11 @@ export default function CreateSocialPostForm() {
       return;
     }
 
-    createSocialPostMutation.mutate({ content, ownerId: userId! });
+    createSocialPostMutation.mutate({
+      content,
+      ownerId: userId!,
+      isGenerated: false,
+    });
   }
 
   useEffect(() => {

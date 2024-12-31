@@ -9,8 +9,6 @@ import { useDeleteSocialPost } from "../hooks/useDeleteSocialPost";
 import { useState } from "react";
 
 export default function SocialPostCardMenu({
-  userId,
-  postOwnerId,
   postId,
 }: {
   userId: string;

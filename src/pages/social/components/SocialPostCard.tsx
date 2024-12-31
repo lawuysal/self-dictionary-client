@@ -161,6 +161,9 @@ export default function SocialPostCard({
               />
             )}
           </div>
+          {post.isGenerated && (
+            <p className="text-xs text-muted-foreground">Generated</p>
+          )}
           <div>
             <p>{post.content}</p>
           </div>
