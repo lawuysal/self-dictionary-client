@@ -55,21 +55,25 @@ export default function MobileSocialMenu() {
   ];
 
   return (
-    <div className="flex w-full items-center justify-between border-t bg-background py-2 md:hidden">
+    <div className="flex items-center justify-between border-t bg-background py-2 md:hidden">
       {menuItems.map((item, index) => (
-        <NavLink to={item.to} key={index} className="flex w-[90%]">
+        <NavLink
+          to={item.to}
+          key={index + "socialMobileNavbar"}
+          className="flex w-full px-2"
+        >
           <div
             className={cn(
-              "flex items-center justify-start gap-2 text-nowrap rounded-lg px-6 py-2 transition-all duration-300 ease-in-out",
-              item.isActive ? "w-44 bg-muted/70" : "w-12 bg-transparent",
+              "flex items-center justify-start gap-2 text-nowrap rounded-lg px-2 py-2 transition-all duration-300 ease-in-out",
+              item.isActive ? "w-40 bg-muted/70" : "w-0 bg-transparent",
             )}
             style={{ transitionProperty: "width, background-color" }}
           >
             <span className="text-lg">{item.icon}</span>
             <span
               className={cn(
-                "overflow-hidden text-sm font-medium transition-opacity duration-300 ease-in-out",
-                item.isActive ? "opacity-100" : "opacity-0",
+                "w-0 whitespace-nowrap text-sm font-medium transition-opacity duration-300 ease-in-out",
+                item.isActive ? "flex opacity-100" : "hidden opacity-0",
               )}
             >
               {item.label}
