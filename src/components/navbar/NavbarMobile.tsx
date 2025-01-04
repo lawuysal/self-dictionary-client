@@ -12,19 +12,13 @@ import { NAVBAR_ROUTES } from "./NavbarRoutes";
 import { NavLink } from "react-router-dom";
 import { Button } from "../ui/button";
 import ROUTES from "@/routes/Routes.enum";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { logout } from "@/redux/slices/auth/authSlice";
-import { cleanProfile } from "@/redux/slices/user/userProfileSlice";
-import { cleanPreference } from "@/redux/slices/user/userPrefrenceSlice";
-import { useNavigate } from "react-router-dom";
-import { useToast } from "@/hooks/use-toast";
+import LogoutButton from "./LogoutButton";
+import { useState } from "react";
 
 export default function NavbarMobile() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { toast } = useToast();
-
+  const [isOpen, setIsOpen] = useState(false);
   const { token, userId } = useSelector((state: RootState) => state.auth);
 
   function RenderAuthState() {
@@ -49,29 +43,17 @@ export default function NavbarMobile() {
     }
 
     return (
-      <SheetClose asChild>
-        <Button
-          className=""
-          variant="destructive"
-          onClick={() => {
-            dispatch(logout());
-            dispatch(cleanProfile());
-            dispatch(cleanPreference());
-            toast({
-              title: "Logout successful",
-              description: "You will be redirected to the home page ",
-            });
-            navigate(ROUTES.HOME, { replace: true });
-          }}
-        >
-          Logout
-        </Button>
-      </SheetClose>
+      <LogoutButton
+        token={token}
+        userId={userId}
+        isDesktop={false}
+        setIsOpen={setIsOpen}
+      />
     );
   }
 
   return (
-    <Sheet>
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger className="flex md:absolute md:hidden">
         <Menu className="p-1" size={36} />
       </SheetTrigger>
