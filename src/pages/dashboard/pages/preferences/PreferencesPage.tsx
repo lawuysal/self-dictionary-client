@@ -15,8 +15,35 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { FormEvent, useState } from "react";
+import { useUpdatePreferences } from "./hooks/useUpdatePreferences";
+import { LoaderCircle } from "lucide-react";
 
 export default function PreferencesPage() {
+  const { language, theme } = useSelector(
+    (state: RootState) => state.userPreference,
+  );
+
+  const [selectedLanguage, setSelectedLanguage] = useState(
+    language?.split("-")[0] || "en",
+  );
+  const [selectedTheme, setSelectedTheme] = useState<
+    "dark" | "light" | "system"
+  >((theme as "dark" | "light" | "system") || "dark");
+
+  const updatePreferencesMuation = useUpdatePreferences();
+
+  function handleSave(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    updatePreferencesMuation.mutate({
+      theme: selectedTheme,
+      language: selectedLanguage,
+    });
+  }
+
   return (
     <main className="mt-5 flex w-full justify-center md:mt-16">
       <Card className="h-fit w-[90%] md:w-[30%]">
@@ -25,11 +52,16 @@ export default function PreferencesPage() {
           <CardDescription>Set your preferences</CardDescription>
         </CardHeader>
 
-        <form className="">
+        <form className="" onSubmit={handleSave}>
           <CardContent className="mt-12 flex flex-col gap-4">
             <div className="flex flex-col gap-2">
               <Label>Select theme:</Label>
-              <Select>
+              <Select
+                value={selectedTheme}
+                onValueChange={(val) =>
+                  setSelectedTheme(val as "dark" | "light" | "system")
+                }
+              >
                 <SelectTrigger className="">
                   <SelectValue placeholder="Theme" />
                 </SelectTrigger>
@@ -43,7 +75,10 @@ export default function PreferencesPage() {
 
             <div className="flex flex-col gap-2">
               <Label>Select language:</Label>
-              <Select>
+              <Select
+                value={selectedLanguage}
+                onValueChange={setSelectedLanguage}
+              >
                 <SelectTrigger className="">
                   <SelectValue placeholder="Language" />
                 </SelectTrigger>
@@ -56,7 +91,14 @@ export default function PreferencesPage() {
           </CardContent>
 
           <CardFooter className="flex flex-row-reverse">
-            <Button>Apply</Button>
+            <Button disabled={updatePreferencesMuation.isPending} type="submit">
+              {updatePreferencesMuation.isPending && (
+                <span className="mr-2 animate-spin">
+                  <LoaderCircle className="size-5" />
+                </span>
+              )}{" "}
+              Save
+            </Button>
           </CardFooter>
         </form>
       </Card>
